@@ -8,11 +8,178 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="shortcut icon" href="./files/favicon.png" type="image/x-icon" />
     <title>BuzzQuizz</title>
-  </head>
-  <body>
-    <div class="container">
-      
+</head>
+<body>
+    <!--header-->
+    <div class="header">
+        <h1>BuzzQuizz</h1>
     </div>
+
+    <!--Tela 1 - Lista de Quizzes-->
+    <div class="hide container-tela1">
+
+        <!--Caixa criar quizzes-->
+        <div class="hide box-criar-quizz">
+            <div class="info">Você não criou nenhum quizz ainda :(</div>
+            <div class="button-criar-quizz">Criar Quizz</div>
+        </div>
+        
+        <!--Caixa seus quizzes-->
+        <div class="seus-quizzes">
+            <div class="info-seus-quizzes">
+                <h1>Seus quizzes</h1>
+                <ion-icon name="add-circle"></ion-icon>
+            </div>
+            
+           
+            <ul class="box-seus-quizzes">
+                <li class="quizz-usuario">
+                    <div class="titulo-quizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                </li>
+
+                <li class="quizz-usuario">
+                    <div class="titulo-quizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                </li>
+            </ul>      
+        </div>
+
+        <!--Caixa todos quizzes-->
+        <div class="todos-quizzes">
+            <div class="info-todos-quizzes">Todos os quizzes</div>
+            
+            <ul class="box-todos-os-quizzes">
+                <li class="quizz-server">
+                    <div class="titulo-quizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                </li>
+
+                <li class="quizz-server">
+                    <div class="titulo-quizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                </li>
+
+                <li class="quizz-server">
+                    <div class="titulo-quizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                </li>
+
+                <li class="quizz-server">
+                    <div class="titulo-quizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                </li>
+
+                <li class="quizz-server">
+                    <div class="titulo-quizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                </li>
+
+                <li class="quizz-server">
+                    <div class="titulo-quizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
+                </li>
+            </ul>
+        </div>
+   
+    </div>
+    
+    <!--Tela 2 - Página de um Quiz-->
+    <div class="container-tela2">
+        <div class="banner">
+            <h1>O quão Potterhead é você?</h1>
+        </div>
+
+        <div class="box-pergunta-resposta">
+            <div class="box-pergunta">
+                Em qual animal Olho-Tonto Moody transfigurou Malfoy?
+            </div>            
+            <ul class="box-resposta">
+                <li class="blur resposta">
+                    <img class="img-resposta" src="./images/teste.jpg" alt="">
+                    <p class="resposta-errada legenda">gatíneo</p>
+                </li>
+
+                <li class="blur resposta">
+                    <img class="img-resposta" src="./images/teste.jpg" alt="">
+                    <p class="resposta-errada legenda">gatíneo</p>
+                </li>
+
+                <li class="blur resposta">
+                    <img class="img-resposta" src="./images/teste.jpg" alt="">
+                    <p class="resposta-errada legenda">gatíneo</p>
+                </li>
+
+                <li class="resposta">
+                    <img class="img-resposta" src="./images/teste.jpg" alt="">
+                    <p class="resposta-certa legenda">gatíneo</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="box-pergunta-resposta">
+            <div class="box-pergunta">
+                Em qual animal Olho-Tonto Moody transfigurou Malfoy?
+            </div>
+            <ul class="box-resposta">
+                <li class="blur resposta">
+                    <img class="img-resposta" src="./images/teste.jpg" alt="">
+                    <p class="resposta-errada legenda">gatíneo</p>
+                </li>
+
+                <li class="blur resposta">
+                    <img class="img-resposta" src="./images/teste.jpg" alt="">
+                    <p class="resposta-errada legenda">gatíneo</p>
+                </li>
+
+                <li class="blur resposta">
+                    <img class="img-resposta" src="./images/teste.jpg" alt="">
+                    <p class="resposta-certa legenda">gatíneo</p>
+                </li>
+
+                <li class="resposta">
+                    <img class="img-resposta" src="./images/teste.jpg" alt="">
+                    <p class="resposta-errada legenda">gatíneo</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="box-pergunta-resposta">
+            <div class="box-pergunta">
+                Em qual animal Olho-Tonto Moody transfigurou Malfoy?
+            </div>
+            <ul class="box-resposta">
+                <li class="blur resposta">
+                    <img class="img-resposta" src="./images/teste.jpg" alt="">
+                    <p class="legenda">gatíneo</p>
+                </li>
+
+                <li class="blur resposta">
+                    <img class="img-resposta" src="./images/teste.jpg" alt="">
+                    <p class="legenda">gatíneo</p>
+                </li>
+
+                <li class="blur resposta">
+                    <img class="img-resposta" src="./images/teste.jpg" alt="">
+                    <p class="legenda">gatíneo</p>
+                </li>
+
+                <li class="resposta">
+                    <img class="img-resposta" src="./images/teste.jpg" alt="">
+                    <p class="legenda">gatíneo</p>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="box-resultado">
+            <div class="nivel-acerto">
+                88% de acerto: Você é praticamente um aluno de Hogwarts!
+            </div>            
+            <div class="resultado">
+                <img class="img-resultado" src="./images/teste.jpg" alt="">
+                <p class="texto-resultado">Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</p>
+            </div>
+        </div>
+
+        <div class="reiniciar-quizz">Reiniciar Quizz</div>
+
+        <div class="voltar-home">Voltar pra home</div>
+    </div>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script src="scripts.js"></script>
   </body>
 </html>
