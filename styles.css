@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Roboto", sans-serif;
   background-color: #fafafa;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 /*-------------header*/
@@ -231,10 +231,10 @@ body {
   color: #ff4b4b;
 }
 
-.reiniciar-quizz,
+.red-button,
 .voltar-home {
-  width: 261px;
   height: 52px;
+  padding: 0px 40px;
   font-size: 21px;
   font-weight: 400;
   color: #fff5f4;
@@ -245,16 +245,16 @@ body {
   justify-content: center;
 }
 
+.red-button,
+.voltar-home:hover {
+  cursor: pointer;
+}
+
 .voltar-home {
   color: #818181;
   background-color: transparent;
   margin-top: 16px;
   margin-bottom: 85px;
-}
-
-/*-------------*/
-.hide {
-  display: none;
 }
 
 /*breakpoint 1100px*/
@@ -367,7 +367,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0px auto;
+  margin: 63px auto 0px auto;
 }
 
 .inputBoxContainer {
@@ -397,10 +397,7 @@ h1 {
   color: #bababa;
 }
 
-.valid {
-  border: solid 1px green;
-}
-
-.invalid {
-  border: solid 1px crimson;
+/*-------------*/
+.hide {
+  display: none;
 }

@@ -1,35 +1,50 @@
-const container = document.querySelector('.container');
+function basicInformationsQuizz(element) {
+  const formsContainerChildren = element.parentElement.children;
+  const inputBoxContainer = formsContainerChildren[1].children;
+  const quizzTitle = String(inputBoxContainer[0].value);
+  const quizzImageURL = String(inputBoxContainer[1].value);
+  const quantityOfQuestions = Number(inputBoxContainer[2].value);
+  const quantityOfLevels = Number(inputBoxContainer[3].value);
+  const urlValidation = (x) =>
+    x.substring(0, 7) === "http://" || x.substring(0, 8) === "https://";
+  const titleValidation = (x) => x.length >= 20 && x.length <= 65;
+  const quantityOfQuestionsValidation = (x) => x >= 3;
+  const quantityOfLevelsValidation = (x) => x >= 2;
 
-function createQuizzPage() {
-    container.innerHTML = `<div class="forms-container">
-    <h1>Comece pelo começo</h1>
-    <div class="inputBoxContainer">
-      <input
-        class="inputBox"
-        type="text"
-        placeholder="Título do seu quizz"
-      />
-      <input
-        class="inputBox"
-        type="url"
-        placeholder="URL da imagem do seu quizz"
-      />
-      <input
-        class="inputBox"
-        type="text"
-        placeholder="Quantidade de perguntas do quizz"
-      />
-      <input
-        class="inputBox"
-        type="text"
-        placeholder="Quantidade de níveis do quizz"
-      />
-    </div>
-    <div class="button"><span>Prosseguir pra criar níveis</span></div>
-  </div>`
+  console.log(titleValidation(quizzTitle));
+  console.log(urlValidation(quizzImageURL));
+  console.log(quantityOfQuestionsValidation(quantityOfQuestions));
+  console.log(quantityOfLevelsValidation(quantityOfLevels));
+
+  console.log(
+    (titleValidation(quizzTitle) ||
+      urlValidation(quizzImageURL) ||
+      quantityOfQuestionsValidation(quantityOfQuestions) ||
+      quantityOfLevelsValidation(quantityOfLevels)) === false
+  );
+  if (
+    (titleValidation(quizzTitle) &&
+      urlValidation(quizzImageURL) &&
+      quantityOfQuestionsValidation(quantityOfQuestions) &&
+      quantityOfLevelsValidation(quantityOfLevels)) === false
+  ) {
+    console.log("incorreto");
+    alert("Por favor, preencha os dados corretamente.");
+  }
+
+  renderCreationMenu(
+    quizzTitle,
+    quizzImageURL,
+    quantityOfQuestions,
+    quantityOfLevels
+  );
 }
 
-function sendCreatedQuizz(this){
-
+function renderCreationMenu(
+  quizzTitle,
+  quizzImageURL,
+  quantityOfQuestions,
+  quantityOfLevels
+) {
+    
 }
-
