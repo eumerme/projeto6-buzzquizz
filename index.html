@@ -12,25 +12,24 @@
 <body>
     <!--header-->
     <div class="header">
-        <h1>BuzzQuizz</h1>
+        <h1 class="titulo-header">BuzzQuizz</h1>
     </div>
 
     <!--Tela 1 - Lista de Quizzes-->
-    <div class="hide container-tela1">
+    <div class=" container-tela1">
 
         <!--Caixa criar quizzes-->
-        <div class="hide box-criar-quizz">
+        <div class="box-criar-quizz">
             <div class="info">Você não criou nenhum quizz ainda :(</div>
             <div class="button-criar-quizz">Criar Quizz</div>
         </div>
         
         <!--Caixa seus quizzes-->
-        <div class="seus-quizzes">
+        <div class="hide seus-quizzes">
             <div class="info-seus-quizzes">
                 <h1>Seus quizzes</h1>
                 <ion-icon name="add-circle"></ion-icon>
             </div>
-            
            
             <ul class="box-seus-quizzes">
                 <li class="quizz-usuario">
@@ -48,38 +47,15 @@
             <div class="info-todos-quizzes">Todos os quizzes</div>
             
             <ul class="box-todos-os-quizzes">
-                <li class="quizz-server">
-                    <div class="titulo-quizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
-                </li>
-
-                <li class="quizz-server">
-                    <div class="titulo-quizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
-                </li>
-
-                <li class="quizz-server">
-                    <div class="titulo-quizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
-                </li>
-
-                <li class="quizz-server">
-                    <div class="titulo-quizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
-                </li>
-
-                <li class="quizz-server">
-                    <div class="titulo-quizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
-                </li>
-
-                <li class="quizz-server">
-                    <div class="titulo-quizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
-                </li>
             </ul>
         </div>
    
     </div>
     
     <!--Tela 2 - Página de um Quiz-->
-    <div class="container-tela2">
+    <div class="hide container-tela2">
         <div class="banner">
-            <h1>O quão Potterhead é você?</h1>
+            <h1 class="titulo-banner">O quão Potterhead é você?</h1>
         </div>
 
         <div class="box-pergunta-resposta">
@@ -180,6 +156,7 @@
 
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="scripts.js"></script>
   </body>
 </html>
