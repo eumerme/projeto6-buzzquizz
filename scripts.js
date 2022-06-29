@@ -10,18 +10,7 @@ function basicInformationsQuizz(element) {
   const titleValidation = (x) => x.length >= 20 && x.length <= 65;
   const quantityOfQuestionsValidation = (x) => x >= 3;
   const quantityOfLevelsValidation = (x) => x >= 2;
-
-  console.log(titleValidation(quizzTitle));
-  console.log(urlValidation(quizzImageURL));
-  console.log(quantityOfQuestionsValidation(quantityOfQuestions));
-  console.log(quantityOfLevelsValidation(quantityOfLevels));
-
-  console.log(
-    (titleValidation(quizzTitle) ||
-      urlValidation(quizzImageURL) ||
-      quantityOfQuestionsValidation(quantityOfQuestions) ||
-      quantityOfLevelsValidation(quantityOfLevels)) === false
-  );
+  
   if (
     (titleValidation(quizzTitle) &&
       urlValidation(quizzImageURL) &&
@@ -46,5 +35,5 @@ function renderCreationMenu(
   quantityOfQuestions,
   quantityOfLevels
 ) {
-    
+
 }
