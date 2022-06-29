@@ -9,7 +9,7 @@ body {
     box-sizing: border-box;
 }
 
-/*header*/
+/*-------------header*/
 .header {
     width: 100%;
     height: 69px;
@@ -26,7 +26,8 @@ body {
     color: #ffffff;
 }
 
-/*Tela 1 - Lista de Quizzes*/
+
+/*--------------Tela 1 - Lista de Quizzes*/
 .container-tela1 {
     width: 83%;
     margin: 0 auto 200px auto;
@@ -99,7 +100,13 @@ body {
     display: flex;
     align-items: flex-end;    
     border-radius: 5px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%), url(https://observatoriodocinema.uol.com.br/wp-content/uploads/2019/08/the-simpsons-tv-series-cast-wallpaper-109911.0.0-1.jpeg); /*IMAGEM TESTE*/
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 0, 0, 0.5) 64.58%,
+        #000000 100%
+        ),
+        url(https://observatoriodocinema.uol.com.br/wp-content/uploads/2019/08/the-simpsons-tv-series-cast-wallpaper-109911.0.0-1.jpeg); /*IMAGEM TESTE*/
     background-size: cover;
     margin-top: 15px;
     margin-right: 15px;
@@ -116,6 +123,142 @@ body {
 }
 
 
+/*---------------Tela 2 - Página de um Quiz*/
+.container-tela2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.banner {
+    width: 100%;
+    height: 227px;
+    font-size: 39px;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    text-align: center;
+    background: linear-gradient(
+        0deg, 
+        rgba(0, 0, 0, 0.57), 
+        rgba(0, 0, 0, 0.57)), 
+        url(https://observatoriodocinema.uol.com.br/wp-content/uploads/2019/08/the-simpsons-tv-series-cast-wallpaper-109911.0.0-1.jpeg); /*IMAGEM TESTE*/
+    background-size: cover;
+    margin-bottom: 42px;
+}
+
+.box-pergunta-resposta,
+.box-resultado {
+    width: 759px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    margin-bottom: 42px;
+}
+
+.box-resultado {
+    margin-bottom: 57px;
+}
+
+.box-pergunta,
+.nivel-acerto {
+    width: 100%;
+    height: 138px;
+    font-size: 23px;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #434CA0;
+    padding: 5px;
+}
+
+.nivel-acerto {
+    background-color: #EC362D;
+}
+
+.box-resposta, 
+.resultado {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.resultado {
+    margin-top: 20px;
+}
+
+.resposta {
+    width: 330px;
+    margin-top: 20px;
+}
+
+.img-resposta {
+    width: 100%;
+    height: 175px;
+}
+
+.legenda {
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 23px;
+    margin-top: 12px;
+    color: #000000;
+}
+
+.img-resultado {
+    width: 378px;
+    height: 273px;
+}
+
+.texto-resultado {
+    width: 294px;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 25px;
+    color: #484848;
+}
+
+.blur {
+    opacity: 0.3;
+}
+
+.resposta-certa {
+    color: #009C22;
+}
+
+.resposta-errada {
+    color: #FF4B4B;
+}
+
+.reiniciar-quizz,
+.voltar-home {
+    width: 261px;
+    height: 52px;
+    font-size: 21px;
+    font-weight: 400;
+    color: #FFF5F4;
+    border-radius: 15px;
+    background-color: #EC362D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.voltar-home {
+    color: #818181;
+    background-color: transparent;
+    margin-top: 16px;
+    margin-bottom: 85px;
+}
+
+
+/*-------------*/
 .hide {
     display: none;
 }
@@ -127,10 +270,69 @@ body {
     .box-seus-quizzes {
         flex-direction: column;
     }
+
+    /*-------------TELA 2*/
+    .banner {
+        height: 192px;
+        font-size: 19px;
+        line-height: 22px;
+    }
+
+    .box-pergunta-resposta,
+    .box-resultado {
+        width: 436px;
+        padding: 18px;
+    }
+
+    .box-pergunta,
+    .nivel-acerto {
+        height: 89px;
+        font-size: 19px;
+        font-weight: 700;
+        line-height: 22px;
+        text-align: center;
+    }
+
+    .resposta {
+        width: 194px;
+    }
+    
+    .img-resposta {
+        height: 134px;
+    }
+
+    .legenda {
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 15px;
+    }
+
+    .resultado {
+        margin-top: 20px;
+    }
+    
+    .img-resultado {
+        width: 100%;
+        height: 255px;
+        margin-bottom: 13px;
+    }
+    
+    .texto-resultado {
+        width: 100%;
+    }
+
+    .reiniciar-quizz,
+    .voltar-home {
+        width: 220px;
+        height: 44px;
+        font-size: 18px;
+    }
 }
 
-/*breakpoint 414px*/
-@media (max-width: 414px) {
+
+/*breakpoint 436px*/
+@media (max-width: 436px) {
+    /*-------------TELA 1*/
     .quizz-server,
     .quizz-usuario {
         width: 100%;
@@ -138,6 +340,25 @@ body {
 
     .info-seus-quizzes {
         justify-content: space-between;
+    }
+
+
+    /*-------------TELA 2*/
+    .banner {
+        height: 142px;
+    }
+
+    .box-pergunta-resposta,
+    .box-resultado {
+        width: 100%;
+    }
+
+    .resposta {
+        width: 163px;
+    }
+    
+    .img-resposta {
+        height: 113px;
     }
 }
 
