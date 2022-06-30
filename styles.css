@@ -9,6 +9,10 @@ body {
   background-color: #fafafa;
 }
 
+.main-tela2 {
+  width: 100vw;
+  height: 100vh;
+}
 /*-------------header*/
 .header {
   width: 100%;
@@ -145,10 +149,22 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)),
-        url(https://observatoriodocinema.uol.com.br/wp-content/uploads/2019/08/the-simpsons-tv-series-cast-wallpaper-109911.0.0-1.jpeg); /*IMAGEM TESTE*/
-    background-size: cover;
     margin-bottom: 42px;
+    position: relative;
+}
+
+.img-banner,
+.opaco {
+    width: 100%;
+    height: 227px;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+.opaco {
+  opacity: 0.6;
+  background-color: #000000;
 }
 
 .titulo-banner {
@@ -165,6 +181,9 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     padding: 30px;
     margin-bottom: 42px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .box-resultado {
@@ -189,15 +208,11 @@ body {
   background-color: #ec362d;
 }
 
-.box-resposta,
 .resultado {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-}
-
-.resultado {
   margin-top: 20px;
 }
 
@@ -275,6 +290,11 @@ body {
   /*-------------TELA 2*/
   .banner {
     height: 142px;
+  }
+
+  .img-banner,
+  .opaco {
+      height: 142px;
   }
 
   .titulo-banner {

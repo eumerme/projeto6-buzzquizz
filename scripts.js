@@ -1,7 +1,6 @@
 const urlApi = "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes";
 let todosQuizzes;
-
-buscarTodosQuizzes ();
+let quizzAPI;
 
 
 function toggleTela1 (){
@@ -24,6 +23,29 @@ function toggleTela32 (){
     containerTela32.classList.toggle("hide");
 }
 
+function quizzSelecionado (element) {
+    console.log(element)
+   toggleTela1();
+   toggleTela2 ();
+}
+
+function makeQuizz () {
+    toggleTela1();
+    toggleTela31();
+}
+
+//essa função faz funcionar o botão de "Prosseguir para criar níveis",
+//mas desativa a validação
+/* 
+function makeLevels () {
+    toggleTela31();
+    toggleTela32();
+}*/
+
+
+//--------renderiza todos os quizzes da api
+
+buscarTodosQuizzes ();  //essa função tá comentada pra conseguir ver a função de buscar 1 quizz só 
 
 function buscarTodosQuizzes () {
     const promise = axios.get(`${urlApi}`);
@@ -47,7 +69,7 @@ function renderizarTodosQuizzes () {
 
     for (let i = 0; i < todosQuizzes.length; i++) {
         const quizzTamplate = `
-            <li class="quizz-server" onclick="quizzSelecionado();">
+            <li class="quizz-server" onclick="quizzSelecionado(this);">
                 <div class="titulo-quizz">${todosQuizzes[i].title}</div>
                 <img class="img-bckgnd" src="${todosQuizzes[i].image}" alt="">
             </li>
@@ -58,77 +80,70 @@ function renderizarTodosQuizzes () {
     
 }
 
-function quizzSelecionado () {
-   toggleTela1();
-   toggleTela2 ();
-}
 
-// getOneQuizz();
+//--------renderiza um quizz específico da api
+
+getOneQuizz();
 
 function getOneQuizz () {
-    const promise = axios.get(`${urlApi}/8000`);
+    const promise = axios.get(`${urlApi}/1`);
     promise.catch(erro);
-    promise.then(renderizarUmQuizz);
+    promise.then(umquizz);
+}
+
+function umquizz (quizz) {
+    quizzAPI = quizz.data;
+    console.log(quizzAPI);
+ 
+   renderizarUmQuizz();   
 }
 
 
-function renderizarUmQuizz (quizzApi) {
-    console.log(quizzApi.data)
+function renderizarUmQuizz () {
+    const banner = document.querySelector(".banner");
+    const bannerTamplate = `
+        <h1 class="titulo-banner">${quizzAPI.title}</h1>
+        <img class="img-banner" src="${quizzAPI.image}" alt="">
+        <div class="opaco"></div>
+    `;
+    banner.innerHTML = bannerTamplate;
 
-    /*const tela2 = document.querySelector(".container-tela2");
-    
-    for (let i = 0; i < quizzApi.data.length; i++) {
-        const bannerTamplate = `
-            <div class="banner">
-                <h1 class="titulo-banner">${quizzApi.data.title}</h1>
+
+    const tela2 = document.querySelector(".container-tela2");
+    for (let i = 0; i < quizzAPI.questions.length; i++) {
+        const boxPerguntaREsposta = `
+        <div class="box-pergunta-resposta">
+            <div class="box-pergunta">
+            ${quizzAPI.questions[i].title}
             </div>
-        `;
-
-        const perguntaRespostaTamplate = `
-            <div class="box-pergunta-resposta">
-                <div class="box-pergunta">${quizzApi.question[i].title}</div>            
-                <ul class="box-resposta">
-                    <li class="blur resposta">
-                        <img class="img-resposta" src="${quizzApi.question[i].answers.image}" alt="">
-                        <p class="resposta-errada legenda">${quizzApi.question[i].answers.text}</p>
-                    </li>
-                </ul>
+            
+            <div class="blur resposta">
+                <img class="img-resposta" src="${quizzAPI.questions[i].answers[i].image}" alt="" />
+                <p class="resposta-errada legenda">${quizzAPI.questions[i].answers[i].text}</p>
             </div>
-        `;
 
-        const resultadoTamplate = `
-            <div class="box-resultado">
-                <div class="nivel-acerto">
-                    88% de acerto: Você é praticamente um aluno de Hogwarts!
-                </div>            
-                <div class="resultado">
-                    <img class="img-resultado" src="./images/teste.jpg" alt="">
-                    <p class="texto-resultado">Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</p>
-                </div>
+            <div class="blur resposta">
+                <img class="img-resposta" src="${quizzAPI.questions[i].answers[i].image}" alt="" />
+                <p class="resposta-errada legenda">${quizzAPI.questions[i].answers[i].text}</p>
             </div>
-        `;
 
-        tela2.innerHTML = bannerTamplate + 
-                        perguntaRespostaTamplate + 
-                        resultadoTamplate +
-                        `<div class="red-button">Reiniciar Quizz</div>
+            <div class="blur resposta">
+                <img class="img-resposta" src="${quizzAPI.questions[i].answers[i].image}" alt="" />
+                <p class="resposta-certa legenda">${quizzAPI.questions[i].answers[i].text}</p>
+            </div>
 
-                        <div class="voltar-home" onclick="quizzSelecionado();">Voltar pra home</div>
-                        `;
-    }*/
-
+            <div class="resposta">
+                <img class="img-resposta" src="${quizzAPI.questions[i].answers[i].image}" alt="" />
+                <p class="resposta-errada legenda">${quizzAPI.questions[i].answers[i].text}</p>
+            </div>            
+        </div>
+        `
+        tela2.innerHTML += boxPerguntaREsposta;
+    }   
 }
 
-function makeQuizz () {
-    toggleTela1();
-    toggleTela31();
-}
 
-function makeLevels () {
-    toggleTela31();
-    toggleTela32();
-}
-
+//--------renderiza os formulários de criação do quizz
 const container = document.querySelector('.container');
 function basicInformationsQuizz(element) {
   const formsContainerChildren = element.parentElement.children;
