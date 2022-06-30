@@ -16,32 +16,26 @@
     </div>
 
     <!--Tela 1 - Lista de Quizzes-->
-    <div class=" container-tela1">
+    <div class="container-tela1">
 
         <!--Caixa criar quizzes-->
         <div class="box-criar-quizz">
             <div class="info">Você não criou nenhum quizz ainda :(</div>
-            <div class="button-criar-quizz">Criar Quizz</div>
+            <div class="button-criar-quizz" onclick="makeQuizz()">Criar Quizz</div>
         </div>
         
         <!--Caixa seus quizzes-->
         <div class="hide seus-quizzes">
             <div class="info-seus-quizzes">
                 <h1>Seus quizzes</h1>
-                <ion-icon name="add-circle"></ion-icon>
+                <ion-icon name="add-circle" onclick="makeQuizz()"></ion-icon>
             </div>
            
             <ul class="box-seus-quizzes">
-                <li class="quizz-usuario">
-                    <div class="titulo-quizz">Acerte os personagens corretos dos Simpsons e prove seu amor!</div>
-                </li>
-
-
-                <li class="quizz-usuario">
-                    <div class="titulo-quizz">
-                    Acerte os personagens corretos dos Simpsons e prove seu amor!
-                    </div>
-                </li>
+              <!--  <li class="quizz-usuario">
+                  <div class="titulo-quizz">${todosQuizzes[i].title}</div>
+                  <img class="img-bckgnd" src="${todosQuizzes[i].image}" alt="">
+                </li> -->
             </ul>
         </div>
 
@@ -53,7 +47,7 @@
             </ul>
         </div>
    
-
+    </div>
     <!--Tela 2 - Página de um Quiz-->
     <div class="hide container-tela2">
 
@@ -61,28 +55,6 @@
             <h1 class="titulo-banner">O quão Potterhead é você?</h1>
         </div>
 
-        <ul class="box-resposta">
-            <li class="blur resposta">
-                <img class="img-resposta" src="./images/teste.jpg" alt="" />
-                <p class="resposta-errada legenda">gatíneo</p>
-            </li>
-
-            <li class="blur resposta">
-                <img class="img-resposta" src="./images/teste.jpg" alt="" />
-                <p class="resposta-errada legenda">gatíneo</p>
-            </li>
-
-            <li class="blur resposta">
-                <img class="img-resposta" src="./images/teste.jpg" alt="" />
-                <p class="resposta-errada legenda">gatíneo</p>
-            </li>
-
-            <li class="resposta">
-                <img class="img-resposta" src="./images/teste.jpg" alt="" />
-                <p class="resposta-certa legenda">gatíneo</p>
-            </li>
-        </ul>
-    
         <div class="box-pergunta-resposta">
             <div class="box-pergunta">
                 Em qual animal Olho-Tonto Moody transfigurou Malfoy?
@@ -149,11 +121,11 @@
                 reiniciar este teste.
                 </p>
             </div>
-        </div>
+        </div> 
 
         <div class="red-button">Reiniciar Quizz</div>
 
-        <div class="voltar-home">Voltar pra home</div>
+        <div class="voltar-home" onclick="quizzSelecionado();">Voltar pra home</div>
     </div>
 
     <!-- Formulário de informações básicas sobre a criação de um quizz -->
@@ -192,7 +164,7 @@
 
 
     <!-- Inserir informações para criar os quizzes -->
-    <div class="forms-container">
+    <div class="hide forms-container">
       <h1>Comece pelo começo</h1>
       <div class="inputBoxContainer">
         <h1>Pergunta X</h1>
@@ -260,10 +232,13 @@
         />
       </div>
     </div>
+
+
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="scripts.js"></script>
   </body>
 </html>
