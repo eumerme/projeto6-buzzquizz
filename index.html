@@ -16,40 +16,41 @@
     </div>
 
     <!--Tela 1 - Lista de Quizzes-->    
-    <div class="hide container-tela1">
+    <div class="container-tela1">
 
-        <!--Caixa criar quizzes-->
-        <div class="box-criar-quizz">
-            <div class="info">Você não criou nenhum quizz ainda :(</div>
-            <div class="button-criar-quizz" onclick="makeQuizz()">Criar Quizz</div>
-        </div>
-        
-        <!--Caixa seus quizzes-->
-        <div class="hide seus-quizzes">
-            <div class="info-seus-quizzes">
-                <h1>Seus quizzes</h1>
-                <ion-icon name="add-circle" onclick="makeQuizz()"></ion-icon>
-            </div>
-           
-            <ul class="box-seus-quizzes">
-              <!--  <li class="quizz-usuario">
-                  <div class="titulo-quizz">${todosQuizzes[i].title}</div>
-                  <img class="img-bckgnd" src="${todosQuizzes[i].image}" alt="">
-                </li> -->
-            </ul>
-        </div>
+      <!--Caixa criar quizzes-->
+      <div class="box-criar-quizz">
+          <div class="info">Você não criou nenhum quizz ainda :(</div>
+          <div class="button-criar-quizz" onclick="makeQuizz()">Criar Quizz</div>
+      </div>
+      
+      <!--Caixa seus quizzes-->
+      <div class="hide seus-quizzes">
+          <div class="info-seus-quizzes">
+              <h1>Seus quizzes</h1>
+              <ion-icon name="add-circle" onclick="makeQuizz()"></ion-icon>
+          </div>
+         
+          <ul class="box-seus-quizzes">
+            <!--  <li class="quizz-usuario">
+                <div class="titulo-quizz">${todosQuizzes[i].title}</div>
+                <img class="img-bckgnd" src="${todosQuizzes[i].image}" alt="">
+              </li> -->
+          </ul>
+      </div>
 
-        <!--Caixa todos quizzes-->
-        <div class="todos-quizzes">
-            <div class="info-todos-quizzes">Todos os quizzes</div>
-            
-            <ul class="box-todos-os-quizzes">
-            </ul>
-        </div>
-   
+      <!--Caixa todos quizzes-->
+      <div class="todos-quizzes">
+          <div class="info-todos-quizzes">Todos os quizzes</div>
+          
+          <ul class="box-todos-os-quizzes">
+          </ul>
+      </div>
+ 
     </div>
+
     <!--Tela 2 - Página de um Quiz-->
-    <div class="container-tela2">
+    <div class="hide container-tela2">
 
         <div class="banner">          
         </div>
@@ -68,9 +69,9 @@
             </div>
         </div> 
 
-        <div class="red-button">Reiniciar Quizz</div>
+        <div class="hide red-button">Reiniciar Quizz</div>
 
-        <div class="voltar-home" onclick="quizzSelecionado();">Voltar pra home</div>
+        <div class="hide voltar-home" onclick="quizzSelecionado();">Voltar pra home</div>
     </div>
 
     <!-- Formulário de informações básicas sobre a criação de um quizz -->
