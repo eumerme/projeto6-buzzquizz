@@ -1,4 +1,4 @@
-const urlApi = "https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes";
+const urlApi = "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes";
 let todosQuizzes;
 
 buscarTodosQuizzes ();
@@ -14,11 +14,15 @@ function toggleTela2 (){
     containerTela2.classList.toggle("hide");
 }
 
-function toggleTela3 (){
-    const containerTela3 = document.querySelector(".forms-container");
-    containerTela3.classList.toggle("hide");
+function toggleTela31 (){
+    const containerTela31 = document.querySelector(".forms-container");
+    containerTela31.classList.toggle("hide");
 }
 
+function toggleTela32 (){
+    const containerTela32 = document.querySelector(".forms-container-infos");
+    containerTela32.classList.toggle("hide");
+}
 
 
 function buscarTodosQuizzes () {
@@ -57,7 +61,6 @@ function renderizarTodosQuizzes () {
 function quizzSelecionado () {
    toggleTela1();
    toggleTela2 ();
- 
 }
 
 // getOneQuizz();
@@ -118,7 +121,12 @@ function renderizarUmQuizz (quizzApi) {
 
 function makeQuizz () {
     toggleTela1();
-    toggleTela3();
+    toggleTela31();
+}
+
+function makeLevels () {
+    toggleTela31();
+    toggleTela32();
 }
 
 const container = document.querySelector('.container');

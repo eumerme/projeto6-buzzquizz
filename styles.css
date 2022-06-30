@@ -378,7 +378,8 @@ h1 {
   margin: 0px auto;
 }
 
-.forms-container {
+.forms-container,
+.forms-container-infos {
   display: flex;
   flex-direction: column;
   align-items: center;
