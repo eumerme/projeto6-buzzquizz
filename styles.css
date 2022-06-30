@@ -257,6 +257,97 @@ body {
   margin-bottom: 85px;
 }
 
+h1 {
+  color: black;
+  font-weight: 700;
+  font-size: 23px;
+}
+
+.container {
+  margin: 0px auto;
+}
+
+.forms-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 63px auto 0px auto;
+}
+
+.inputBoxContainer {
+  background-color: white;
+  min-width: 600px;
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 0px 10px 0px #0000000d;
+  margin: 27px 0px 85px 0px;
+  height: 755px;
+  transition: all 0.2s ease-out;
+}
+
+.inputBox {
+  border-radius: 5px;
+  font-size: 19px;
+  width: 100%;
+  background-color: white;
+  border: solid 1px #d1d1d1;
+  margin-top: 9px;
+  height: 46px;
+}
+
+.inputBox::placeholder {
+  font-style: italic;
+  font-size: 19px;
+  color: #bababa;
+}
+
+.quizz-creation-form {
+  width: 100%;
+}
+
+.quizz-creation-form h2 {
+  font-size: 20px;
+  font-weight: 700;
+  width: 100%;
+  margin: 28px auto 14px auto;
+}
+
+.quizz-creation-form h2:first-child {
+  margin: 0px auto 14px auto;
+}
+
+.quizz-creation-form ion-icon {
+  display: none;
+}
+
+.minimized {
+  height: 74px;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 27px;
+}
+
+.minimized .inputBox {
+  display: none;
+}
+
+.minimized h2 {
+  display: none;
+}
+
+.minimized ion-icon {
+  display: block;
+  height: 23px;
+  width: 26px;
+}
+
+.minimized h2:first-child {
+  display: block;
+  margin: 0px;
+}
+
 /*breakpoint 1100px*/
 @media (max-width: 1100px) {
   .box-todos-os-quizzes,
@@ -351,50 +442,6 @@ body {
   .img-resposta {
     height: 113px;
   }
-}
-
-h1 {
-  color: black;
-  font-weight: 700;
-  font-size: 23px;
-}
-
-.container {
-  margin: 0px auto;
-}
-
-.forms-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 63px auto 0px auto;
-}
-
-.inputBoxContainer {
-  background-color: white;
-  min-width: 600px;
-  padding: 20px 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 0px 0px 10px 0px #0000000d;
-  margin: 27px 0px 85px 0px;
-}
-
-.inputBox {
-  border-radius: 5px;
-  font-size: 19px;
-  width: 100%;
-  background-color: white;
-  border: solid 1px #d1d1d1;
-  margin-top: 9px;
-  height: 46px;
-}
-
-.inputBox::placeholder {
-  font-style: italic;
-  font-size: 19px;
-  color: #bababa;
 }
 
 /*-------------*/
