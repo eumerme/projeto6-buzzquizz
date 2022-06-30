@@ -82,7 +82,6 @@ function renderizarTodosQuizzes () {
 
 
 //--------renderiza um quizz específico da api
-
 function getOneQuizz (id) {
     const promise = axios.get(`${urlApi}/${id}`);
     promise.catch(erro);
@@ -111,28 +110,32 @@ function renderizarQuizzSelecionado () {
         const boxPerguntaREsposta = `
         <div class="box-pergunta-resposta">
             <div class="box-pergunta">
-            ${quizzAPI.questions[i].title}
+                ${quizzAPI.questions[i].title}
             </div>
             
-            <div class="blur resposta">
-                <img class="img-resposta" src="${quizzAPI.questions[i].answers[0].image}" alt="" />
-                <p class="resposta-errada legenda">${quizzAPI.questions[i].answers[0].text}</p>
-            </div>
+            <div class="box-resposta">
+                <div class="resposta" onclick="selecionarResposta(this);">
+                    <img class="img-resposta" src="${quizzAPI.questions[i].answers[0].image}" alt="" />
+                    <p class="legenda">${quizzAPI.questions[i].answers[0].text}</p>
+                </div>
 
-            <div class="blur resposta">
-                <img class="img-resposta" src="${quizzAPI.questions[i].answers[1].image}" alt="" />
-                <p class="resposta-errada legenda">${quizzAPI.questions[i].answers[1].text}</p>
-            </div>
+                <div class="resposta" onclick="selecionarResposta(this);">
+                    <img class="img-resposta" src="${quizzAPI.questions[i].answers[1].image}" alt="" />
+                    <p class="legenda">${quizzAPI.questions[i].answers[1].text}</p>
+                </div>
 
-            <div class="blur resposta">
-                <img class="img-resposta" src="${quizzAPI.questions[i].answers[2].image}" alt="" />
-                <p class="resposta-certa legenda">${quizzAPI.questions[i].answers[2].text}</p>
-            </div>
+                <div class="resposta" onclick="selecionarResposta(this);">
+                    <img class="img-resposta" src="${quizzAPI.questions[i].answers[2].image}" alt="" />
+                    <p class="legenda">${quizzAPI.questions[i].answers[2].text}</p>
+                </div>
 
-            <div class="resposta">
-                <img class="img-resposta" src="${quizzAPI.questions[i].answers[3].image}" alt="" />
-                <p class="resposta-errada legenda">${quizzAPI.questions[i].answers[3].text}</p>
-            </div>            
+                <div class="resposta" onclick="selecionarResposta(this);">
+                    <img class="img-resposta" src="${quizzAPI.questions[i].answers[3].image}" alt="" />
+                    <p class="legenda">${quizzAPI.questions[i].answers[3].text}</p>
+                </div>  
+            </div> 
+            <div class="blur">
+            </div>         
         </div>
         `
         tela2.innerHTML += boxPerguntaREsposta;
@@ -141,9 +144,13 @@ function renderizarQuizzSelecionado () {
 
 }
 
-//function selectAnswer() {
- //   if (quizzAPI.questions[i].answers[3])
-//}
+function selecionarResposta (resposta) {
+    console.log(resposta)
+    
+    resposta.querySelector(".img-resposta").classList.add("blur");
+    resposta.querySelector(".legenda").classList.add("blur");
+    
+}
 
 
 //--------renderiza os formulários de criação do quizz
@@ -190,4 +197,6 @@ function renderCreationMenu(
 
 
 //shuffle cards
-const comparador = () => Math.random() - 0.5; 
+function comparador() { 
+	return Math.random() - 0.5; 
+}
