@@ -138,7 +138,7 @@ function gerarAlternativas (respostas) {
 
     for (let i = 0; i < resposta.length; i++) {
         alternativas +=`
-            <div class="resposta">
+            <div class="resposta" onclick="alternativaSelecionada(${resposta[i].isCorrectAnswer}, ${resposta})">
                 <img class="img-resposta" src="${resposta[i].image}" alt="" />
                 <p class="legenda">${resposta[i].text}</p>
             </div>
@@ -146,18 +146,6 @@ function gerarAlternativas (respostas) {
     }
 }
 
-
-
-
-
-
-function selecionarResposta (resposta) {
-    console.log(resposta)
-    
-    resposta.querySelector(".img-resposta").classList.add("blur");
-    resposta.querySelector(".legenda").classList.add("blur");
-    
-}
 
 
 //--------renderiza os formulários de criação do quizz
@@ -184,7 +172,7 @@ function basicInformationsQuizz(element) {
     alert("Por favor, preencha os dados corretamente.");
   }
 
-  renderCreationMenu(
+    renderCreationMenu(
     quizzTitle,
     quizzImageURL,
     quantityOfQuestions,
