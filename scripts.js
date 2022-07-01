@@ -1,6 +1,10 @@
 const urlApi = "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes";
-let todosQuizzes;
-let quizzAPI;
+let todosQuizzes, quizzAPI, perguntasApi, resposta;
+let totalUsuario = 0;
+let total = 0;
+let alternativaClicada;
+let resultadoTitulo, resultadoImagem, resultadoTexto;
+let tela2;
 
 
 function toggleTela1 (){
@@ -23,11 +27,16 @@ function toggleTela32 (){
     containerTela32.classList.toggle("hide");
 }
 
-function quizzSelecionado (element) {
-    console.log(element);
+function mostrarBotoesQuizz (){
+    const botaoReiniciar = document.querySelector(".reiniciarQuizz");
+    botaoReiniciar.classList.remove("hide");
+    const botaoVoltar = document.querySelector(".voltar-home");
+    botaoVoltar.classList.remove("hide");
+}
 
-   toggleTela1();
-   toggleTela2 ();
+function voltarHome () {
+  toggleTela1();
+  toggleTela2();
 }
 
 function makeQuizz () {
@@ -55,8 +64,7 @@ function buscarTodosQuizzes () {
 }
 
 function todosquizzes (quizzes) {
-    todosQuizzes = quizzes.data;
- 
+    todosQuizzes = quizzes.data; 
     renderizarTodosQuizzes();   
 }
 
@@ -69,7 +77,7 @@ function renderizarTodosQuizzes () {
 
     for (let i = 0; i < todosQuizzes.length; i++) {
         const quizzTamplate = `
-            <li class="quizz-server" onclick="quizzSelecionado(this); getOneQuizz(${todosQuizzes[i].id})">
+            <li class="quizz-server" onclick="getOneQuizz(this, ${todosQuizzes[i].id})">
                 <div class="titulo-quizz">${todosQuizzes[i].title}</div>
                 <img class="img-bckgnd" src="${todosQuizzes[i].image}" alt="">
             </li>
@@ -82,10 +90,12 @@ function renderizarTodosQuizzes () {
 
 
 //--------renderiza um quizz específico da api
-function getOneQuizz (id) {
+function getOneQuizz (elemento, id) {
+    toggleTela1();
+    toggleTela2 ();
     const promise = axios.get(`${urlApi}/${id}`);
     promise.catch(erro);
-    promise.then(umquizz);
+    promise.then(umquizz);   
 }
 
 function umquizz (quizz) {
@@ -107,20 +117,20 @@ let alternativas = "";
 function renderizarQuizzSelecionado () {
     renderizarBanner();  
       
-    const tela2 = document.querySelector(".container-tela2");
-    let perguntasApi = quizzAPI.questions;
+    tela2 = document.querySelector(".conteudo-tela2");
+    perguntasApi = quizzAPI.questions;
     perguntasApi = perguntasApi.sort(shuffle);
 
     for (let i = 0; i < perguntasApi.length; i++) {
-        gerarAlternativas(perguntasApi[i].answers);
+        gerarAlternativas(perguntasApi[i].answers, i);
 
         const boxPerguntaREsposta = `
         <div class="box-pergunta-resposta">
-            <div class="box-pergunta">
+            <div id="${i}" class="box-pergunta">
                 ${perguntasApi[i].title}
             </div>
             
-            <div class="box-resposta">
+            <div id="id${i}" class="box-resposta todas-alternativas${[i]}">
                 ${alternativas}
             </div> 
             </div>         
@@ -128,24 +138,121 @@ function renderizarQuizzSelecionado () {
         `
         alternativas = "";
         tela2.innerHTML += boxPerguntaREsposta;
-    }   
+
+        document.getElementById([i]).style.backgroundColor = `${perguntasApi[i].color}`;
+    }    
 }
 
 
-function gerarAlternativas (respostas) {
-    let resposta = respostas;
+function gerarAlternativas (respostas, indice) {
+    resposta = respostas;
     resposta = resposta.sort(shuffle);
 
     for (let i = 0; i < resposta.length; i++) {
         alternativas +=`
-            <div class="resposta" onclick="alternativaSelecionada(${resposta[i].isCorrectAnswer}, ${resposta})">
+            <div class="resposta" onclick="alternativaSelecionada(this)">
                 <img class="img-resposta" src="${resposta[i].image}" alt="" />
-                <p class="legenda">${resposta[i].text}</p>
+                <p class="legenda" id="${indice}${i}">${resposta[i].text}</p>
             </div>
         `
     }
 }
 
+
+
+function alternativaSelecionada(alternativaEscolhida) {
+    const boxPerguntas = alternativaEscolhida.parentNode;
+    boxPerguntas.classList.add("clicado");
+    console.log(boxPerguntas)
+
+    for (let i = 0; i < perguntasApi.length + 1; i++) {
+        let contemClasse = boxPerguntas.classList.contains(`todas-alternativas${i}`);
+        console.log(contemClasse)
+
+        if (contemClasse === true) {
+            const alternativa = document.querySelectorAll(`.todas-alternativas${i} .resposta`);
+            console.log(alternativa);
+            
+            for (let j = 0; j < alternativa.length; j++) {
+                alternativa[j].classList.add("blur");
+                alternativa[j].removeAttribute("onclick");
+                alternativa[j].querySelector(".legenda").classList.add("resposta-errada");
+
+                let respostaCorreta = perguntasApi[i].answers[j].isCorrectAnswer 
+                console.log(respostaCorreta)
+            
+                if (respostaCorreta === true) {
+                    const certa = document.getElementById(`${i}${j}`);
+                    console.log(certa);
+                    certa.classList.remove("resposta-errada");
+                    certa.classList.add("resposta-certa");
+
+                    let escolhida = alternativaEscolhida.querySelector(".legenda");
+      
+                    if (escolhida.innerHTML === certa.innerHTML) {
+                        totalUsuario++;
+                        console.log(totalUsuario);
+                    }
+                } 
+            }
+        }
+      alternativaEscolhida.classList.remove("blur");
+    }
+  
+  total++;   
+  console.log(total)
+  setTimeout (scrollNextQuestion, 2000)
+}
+
+
+function scrollNextQuestion () {
+  if (total === perguntasApi.length) {
+    console.log("resultado")
+    resultado();
+  }
+
+  alternativaClicada = document.getElementById(`id${total-1}`).classList.contains("clicado");
+  if (alternativaClicada === true) {
+    document.getElementById(`id${total-1}`).lastElementChild.scrollIntoView({behavior: "smooth"});
+  }
+}
+
+function resultado () {
+    let pontuacao = (totalUsuario/total)*100;
+    pontuacao = Math.round(pontuacao);
+
+    const boxResultado = document.querySelector(".box-resultado");
+    
+    for (let i = 0; i < quizzAPI.levels.length; i++) {
+      
+      if (pontuacao >= quizzAPI.levels[i].minValue) {
+        resultadoTitulo = quizzAPI.levels[i].title;
+        resultadoImagem = quizzAPI.levels[i].image;
+        resultadoTexto = quizzAPI.levels[i].text;
+      }  
+    }
+
+    const resultadoTamplate = `
+        <div class="nivel-acerto">
+          ${pontuacao}% de acerto: ${resultadoTitulo}
+        </div>
+        <div class="resultado">
+          <img class="img-resultado" src="${resultadoImagem}" alt="" />
+          <p class="texto-resultado">
+            ${resultadoTexto}
+          </p>
+        </div>
+      `;
+    boxResultado.innerHTML = resultadoTamplate;
+
+    mostrarBotoesQuizz ();
+}
+
+function reiniciarQuizz () {
+  //falta fazer pra reiniciar o quizz
+  window.scrollTo({top: 0, behavior: 'smooth'});
+
+}
 
 
 //--------renderiza os formulários de criação do quizz
