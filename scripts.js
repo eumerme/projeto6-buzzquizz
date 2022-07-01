@@ -4,7 +4,7 @@ let totalUsuario = 0;
 let total = 0;
 let alternativaClicada;
 let resultadoTitulo, resultadoImagem, resultadoTexto;
-let tela2;
+let tela2, estadoInicialQuizz;
 
 
 function toggleTela1 (){
@@ -27,11 +27,11 @@ function toggleTela32 (){
     containerTela32.classList.toggle("hide");
 }
 
-function mostrarBotoesQuizz (){
+function toggleBotoesQuizz (){
     const botaoReiniciar = document.querySelector(".reiniciarQuizz");
-    botaoReiniciar.classList.remove("hide");
+    botaoReiniciar.classList.toggle("hide");
     const botaoVoltar = document.querySelector(".voltar-home");
-    botaoVoltar.classList.remove("hide");
+    botaoVoltar.classList.toggle("hide");
 }
 
 function voltarHome () {
@@ -140,7 +140,9 @@ function renderizarQuizzSelecionado () {
         tela2.innerHTML += boxPerguntaREsposta;
 
         document.getElementById([i]).style.backgroundColor = `${perguntasApi[i].color}`;
-    }    
+    }
+
+    estadoInicialQuizz = tela2.innerHTML;
 }
 
 
@@ -222,9 +224,11 @@ function resultado () {
     pontuacao = Math.round(pontuacao);
 
     const boxResultado = document.querySelector(".box-resultado");
-    
+    boxResultado.classList.remove("hide");
+
     for (let i = 0; i < quizzAPI.levels.length; i++) {
-      
+     
+      //tá pegando só o level mais baixo
       if (pontuacao >= quizzAPI.levels[i].minValue) {
         resultadoTitulo = quizzAPI.levels[i].title;
         resultadoImagem = quizzAPI.levels[i].image;
@@ -245,13 +249,16 @@ function resultado () {
       `;
     boxResultado.innerHTML = resultadoTamplate;
 
-    mostrarBotoesQuizz ();
+    toggleBotoesQuizz ();
 }
 
 function reiniciarQuizz () {
-  //falta fazer pra reiniciar o quizz
   window.scrollTo({top: 0, behavior: 'smooth'});
-
+  totalUsuario = 0;
+  total = 0;
+  tela2.innerHTML = estadoInicialQuizz;
+  
+  setTimeout ( () => {document.querySelector(".box-resultado").classList.add("hide"); toggleBotoesQuizz ()}, 300);
 }
 
 
