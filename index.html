@@ -12,66 +12,63 @@
   <body>
     <!--header-->
     <div class="header">
-        <h1 class="titulo-header">BuzzQuizz</h1>
+      <h1 class="titulo-header">BuzzQuizz</h1>
     </div>
 
-    <!--Tela 1 - Lista de Quizzes-->    
-    <div class="container-tela1">
-
+    <!--Tela 1 - Lista de Quizzes-->
+    <div class="hide container-tela1">
       <!--Caixa criar quizzes-->
-      <div class="box-criar-quizz">
-          <div class="info">Você não criou nenhum quizz ainda :(</div>
-          <div class="button-criar-quizz" onclick="makeQuizz()">Criar Quizz</div>
+      <div class="hide box-criar-quizz">
+        <div class="info">Você não criou nenhum quizz ainda :(</div>
+        <div class="button-criar-quizz" onclick="makeQuizz()">Criar Quizz</div>
       </div>
-      
+
       <!--Caixa seus quizzes-->
       <div class="hide seus-quizzes">
-          <div class="info-seus-quizzes">
-              <h1>Seus quizzes</h1>
-              <ion-icon name="add-circle" onclick="makeQuizz()"></ion-icon>
-          </div>
-         
-          <ul class="box-seus-quizzes">
-            <!--  <li class="quizz-usuario">
+        <div class="info-seus-quizzes">
+          <h1>Seus quizzes</h1>
+          <ion-icon name="add-circle" onclick="makeQuizz()"></ion-icon>
+        </div>
+
+        <ul class="box-seus-quizzes">
+          <!--  <li class="quizz-usuario">
                 <div class="titulo-quizz">${todosQuizzes[i].title}</div>
                 <img class="img-bckgnd" src="${todosQuizzes[i].image}" alt="">
               </li> -->
-          </ul>
+        </ul>
       </div>
 
       <!--Caixa todos quizzes-->
-      <div class="todos-quizzes">
-          <div class="info-todos-quizzes">Todos os quizzes</div>
-          
-          <ul class="box-todos-os-quizzes">
-          </ul>
+      <div class="hide todos-quizzes">
+        <div class="info-todos-quizzes">Todos os quizzes</div>
+
+        <ul class="box-todos-os-quizzes"></ul>
       </div>
- 
     </div>
 
     <!--Tela 2 - Página de um Quiz-->
     <div class="hide container-tela2">
+      <div class="banner"></div>
 
-        <div class="banner">          
+      <div class="hide box-resultado">
+        <div class="nivel-acerto">
+          88% de acerto: Você é praticamente um aluno de Hogwarts!
         </div>
+        <div class="resultado">
+          <img class="img-resultado" src="./images/teste.jpg" alt="" />
+          <p class="texto-resultado">
+            Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito
+            de comida e clique no botão abaixo para usar o vira-tempo e
+            reiniciar este teste.
+          </p>
+        </div>
+      </div>
 
-        <div class="hide box-resultado">
-            <div class="nivel-acerto">
-                88% de acerto: Você é praticamente um aluno de Hogwarts!
-            </div>
-            <div class="resultado">
-                <img class="img-resultado" src="./images/teste.jpg" alt="" />
-                <p class="texto-resultado">
-                Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito
-                de comida e clique no botão abaixo para usar o vira-tempo e
-                reiniciar este teste.
-                </p>
-            </div>
-        </div> 
+      <div class="hide red-button">Reiniciar Quizz</div>
 
-        <div class="hide red-button">Reiniciar Quizz</div>
-
-        <div class="hide voltar-home" onclick="quizzSelecionado();">Voltar pra home</div>
+      <div class="hide voltar-home" onclick="quizzSelecionado();">
+        Voltar pra home
+      </div>
     </div>
 
     <!-- Formulário de informações básicas sobre a criação de um quizz -->
@@ -103,13 +100,228 @@
           placeholder="Quantidade de níveis do quizz"
         />
       </div>
-      <div class="red-button" onclick="basicInformationsQuizz(this), makeLevels ()">
+      <div
+        class="red-button"
+        onclick="basicInformationsQuizz(this), makeLevels ()"
+      >
         <span>Prosseguir para criar níveis</span>
       </div>
     </div>
 
-
     <!-- Inserir informações para criar os quizzes -->
+    <div class="hide quizz-creation-form">
+      <div class="forms-container">
+        <h1>Crie suas perguntas</h1>
+        <div
+          class="inputBoxContainer minimized"
+          onclick="toggleMinimized(this)"
+        >
+          <h2>Pergunta X</h2>
+          <input
+            class="inputBox"
+            type="text"
+            name="questionText"
+            placeholder="Texto da pergunta"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="questionColor"
+            placeholder="Cor de fundo da pergunta"
+          />
+          <h2>Resposta Correta</h2>
+          <input
+            class="inputBox"
+            type="text"
+            name="correctAnswer"
+            placeholder="Resposta Correta"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="imageURL"
+            placeholder="URL da Imagem"
+          />
+          <h2>Respostas incorretas</h2>
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware1"
+            placeholder="Resposta incorreta 1"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware1ImageURL"
+            placeholder="URL da imagem 1"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware2"
+            placeholder="Resposta incorreta 2"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware2ImageURL"
+            placeholder="URL da imagem 2"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware3"
+            placeholder="Resposta incorreta 3"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware3ImageURL"
+            placeholder="URL da imagem 3"
+          />
+          <ion-icon name="create-outline"></ion-icon>
+        </div>
+        <div
+          class="inputBoxContainer minimized"
+          onclick="toggleMinimized(this)"
+        >
+          <h2>Pergunta X</h2>
+          <input
+            class="inputBox"
+            type="text"
+            name="questionText"
+            placeholder="Texto da pergunta"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="questionColor"
+            placeholder="Cor de fundo da pergunta"
+          />
+          <h2>Resposta Correta</h2>
+          <input
+            class="inputBox"
+            type="text"
+            name="correctAnswer"
+            placeholder="Resposta Correta"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="imageURL"
+            placeholder="URL da Imagem"
+          />
+          <h2>Respostas incorretas</h2>
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware1"
+            placeholder="Resposta incorreta 1"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware1ImageURL"
+            placeholder="URL da imagem 1"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware2"
+            placeholder="Resposta incorreta 2"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware2ImageURL"
+            placeholder="URL da imagem 2"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware3"
+            placeholder="Resposta incorreta 3"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware3ImageURL"
+            placeholder="URL da imagem 3"
+          />
+          <ion-icon name="create-outline"></ion-icon>
+        </div>
+        <div
+          class="inputBoxContainer minimized"
+          onclick="toggleMinimized(this)"
+        >
+          <h2>Pergunta X</h2>
+          <input
+            class="inputBox"
+            type="text"
+            name="questionText"
+            placeholder="Texto da pergunta"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="questionColor"
+            placeholder="Cor de fundo da pergunta"
+          />
+          <h2>Resposta Correta</h2>
+          <input
+            class="inputBox"
+            type="text"
+            name="correctAnswer"
+            placeholder="Resposta Correta"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="imageURL"
+            placeholder="URL da Imagem"
+          />
+          <h2>Respostas incorretas</h2>
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware1"
+            placeholder="Resposta incorreta 1"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware1ImageURL"
+            placeholder="URL da imagem 1"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware2"
+            placeholder="Resposta incorreta 2"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware2ImageURL"
+            placeholder="URL da imagem 2"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware3"
+            placeholder="Resposta incorreta 3"
+          />
+          <input
+            class="inputBox"
+            type="text"
+            name="wrongAnsware3ImageURL"
+            placeholder="URL da imagem 3"
+          />
+          <ion-icon name="create-outline"></ion-icon>
+        </div>
+      </div>
+    </div>
+
     <div class="hide forms-container-infos">
       <h1>Comece pelo começo</h1>
       <div class="inputBoxContainer">
@@ -178,7 +390,6 @@
         />
       </div>
     </div>
-
 
     <script
       type="module"
