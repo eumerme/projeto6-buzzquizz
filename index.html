@@ -16,15 +16,15 @@
     </div>
 
     <!--Tela 1 - Lista de Quizzes-->
-    <div class="hide container-tela1">
+    <div class="container-tela1">
       <!--Caixa criar quizzes-->
-      <div class="hide box-criar-quizz">
+      <div class="box-criar-quizz">
         <div class="info">Você não criou nenhum quizz ainda :(</div>
         <div class="button-criar-quizz" onclick="makeQuizz()">Criar Quizz</div>
       </div>
 
       <!--Caixa seus quizzes-->
-      <div class="hide seus-quizzes">
+      <div class="seus-quizzes">
         <div class="info-seus-quizzes">
           <h1>Seus quizzes</h1>
           <ion-icon name="add-circle" onclick="makeQuizz()"></ion-icon>
@@ -39,7 +39,7 @@
       </div>
 
       <!--Caixa todos quizzes-->
-      <div class="hide todos-quizzes">
+      <div class="todos-quizzes">
         <div class="info-todos-quizzes">Todos os quizzes</div>
 
         <ul class="box-todos-os-quizzes"></ul>
@@ -73,7 +73,7 @@
 
     <!-- Formulário de informações básicas sobre a criação de um quizz -->
     <div class="hide forms-container">
-      <h1>Comece pelo começo</h1>
+      <h1 class="forms-main-title">Comece pelo começo</h1>
       <div class="inputBoxContainer">
         <input
           class="inputBox"
@@ -100,227 +100,13 @@
           placeholder="Quantidade de níveis do quizz"
         />
       </div>
-      <div
-        class="red-button"
-        onclick="basicInformationsQuizz(this), makeLevels ()"
-      >
+      <div class="red-button" onclick="basicInformationsQuizz(this)">
         <span>Prosseguir para criar níveis</span>
       </div>
     </div>
 
     <!-- Inserir informações para criar os quizzes -->
-    <div class="hide quizz-creation-form">
-      <div class="forms-container">
-        <h1>Crie suas perguntas</h1>
-        <div
-          class="inputBoxContainer minimized"
-          onclick="toggleMinimized(this)"
-        >
-          <h2>Pergunta X</h2>
-          <input
-            class="inputBox"
-            type="text"
-            name="questionText"
-            placeholder="Texto da pergunta"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="questionColor"
-            placeholder="Cor de fundo da pergunta"
-          />
-          <h2>Resposta Correta</h2>
-          <input
-            class="inputBox"
-            type="text"
-            name="correctAnswer"
-            placeholder="Resposta Correta"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="imageURL"
-            placeholder="URL da Imagem"
-          />
-          <h2>Respostas incorretas</h2>
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware1"
-            placeholder="Resposta incorreta 1"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware1ImageURL"
-            placeholder="URL da imagem 1"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware2"
-            placeholder="Resposta incorreta 2"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware2ImageURL"
-            placeholder="URL da imagem 2"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware3"
-            placeholder="Resposta incorreta 3"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware3ImageURL"
-            placeholder="URL da imagem 3"
-          />
-          <ion-icon name="create-outline"></ion-icon>
-        </div>
-        <div
-          class="inputBoxContainer minimized"
-          onclick="toggleMinimized(this)"
-        >
-          <h2>Pergunta X</h2>
-          <input
-            class="inputBox"
-            type="text"
-            name="questionText"
-            placeholder="Texto da pergunta"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="questionColor"
-            placeholder="Cor de fundo da pergunta"
-          />
-          <h2>Resposta Correta</h2>
-          <input
-            class="inputBox"
-            type="text"
-            name="correctAnswer"
-            placeholder="Resposta Correta"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="imageURL"
-            placeholder="URL da Imagem"
-          />
-          <h2>Respostas incorretas</h2>
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware1"
-            placeholder="Resposta incorreta 1"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware1ImageURL"
-            placeholder="URL da imagem 1"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware2"
-            placeholder="Resposta incorreta 2"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware2ImageURL"
-            placeholder="URL da imagem 2"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware3"
-            placeholder="Resposta incorreta 3"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware3ImageURL"
-            placeholder="URL da imagem 3"
-          />
-          <ion-icon name="create-outline"></ion-icon>
-        </div>
-        <div
-          class="inputBoxContainer minimized"
-          onclick="toggleMinimized(this)"
-        >
-          <h2>Pergunta X</h2>
-          <input
-            class="inputBox"
-            type="text"
-            name="questionText"
-            placeholder="Texto da pergunta"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="questionColor"
-            placeholder="Cor de fundo da pergunta"
-          />
-          <h2>Resposta Correta</h2>
-          <input
-            class="inputBox"
-            type="text"
-            name="correctAnswer"
-            placeholder="Resposta Correta"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="imageURL"
-            placeholder="URL da Imagem"
-          />
-          <h2>Respostas incorretas</h2>
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware1"
-            placeholder="Resposta incorreta 1"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware1ImageURL"
-            placeholder="URL da imagem 1"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware2"
-            placeholder="Resposta incorreta 2"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware2ImageURL"
-            placeholder="URL da imagem 2"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware3"
-            placeholder="Resposta incorreta 3"
-          />
-          <input
-            class="inputBox"
-            type="text"
-            name="wrongAnsware3ImageURL"
-            placeholder="URL da imagem 3"
-          />
-          <ion-icon name="create-outline"></ion-icon>
-        </div>
-      </div>
-    </div>
+    <div class="hide quizz-creation-form"></div>
 
     <div class="hide forms-container-infos">
       <h1>Comece pelo começo</h1>
