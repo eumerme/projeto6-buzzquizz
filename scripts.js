@@ -89,13 +89,11 @@ function getOneQuizz (id) {
 }
 
 function umquizz (quizz) {
-    quizzAPI = quizz.data;
- 
+   quizzAPI = quizz.data;
    renderizarQuizzSelecionado();   
 }
 
-
-function renderizarQuizzSelecionado () {
+function renderizarBanner () {
     const banner = document.querySelector(".banner");
     const bannerTamplate = `
         <h1 class="titulo-banner">${quizzAPI.title}</h1>
@@ -103,46 +101,55 @@ function renderizarQuizzSelecionado () {
         <div class="opaco"></div>
     `;
     banner.innerHTML = bannerTamplate;
+}
 
-
+let alternativas = "";
+function renderizarQuizzSelecionado () {
+    renderizarBanner();  
+      
     const tela2 = document.querySelector(".container-tela2");
-    for (let i = 0; i < quizzAPI.questions.length; i++) {
+    let perguntasApi = quizzAPI.questions;
+    perguntasApi = perguntasApi.sort(shuffle);
+
+    for (let i = 0; i < perguntasApi.length; i++) {
+        gerarAlternativas(perguntasApi[i].answers);
+
         const boxPerguntaREsposta = `
         <div class="box-pergunta-resposta">
             <div class="box-pergunta">
-                ${quizzAPI.questions[i].title}
+                ${perguntasApi[i].title}
             </div>
             
             <div class="box-resposta">
-                <div class="resposta" onclick="selecionarResposta(this);">
-                    <img class="img-resposta" src="${quizzAPI.questions[i].answers[0].image}" alt="" />
-                    <p class="legenda">${quizzAPI.questions[i].answers[0].text}</p>
-                </div>
-
-                <div class="resposta" onclick="selecionarResposta(this);">
-                    <img class="img-resposta" src="${quizzAPI.questions[i].answers[1].image}" alt="" />
-                    <p class="legenda">${quizzAPI.questions[i].answers[1].text}</p>
-                </div>
-
-                <div class="resposta" onclick="selecionarResposta(this);">
-                    <img class="img-resposta" src="${quizzAPI.questions[i].answers[2].image}" alt="" />
-                    <p class="legenda">${quizzAPI.questions[i].answers[2].text}</p>
-                </div>
-
-                <div class="resposta" onclick="selecionarResposta(this);">
-                    <img class="img-resposta" src="${quizzAPI.questions[i].answers[3].image}" alt="" />
-                    <p class="legenda">${quizzAPI.questions[i].answers[3].text}</p>
-                </div>  
+                ${alternativas}
             </div> 
-            <div class="blur">
             </div>         
         </div>
         `
+        alternativas = "";
         tela2.innerHTML += boxPerguntaREsposta;
     }   
-
-
 }
+
+
+function gerarAlternativas (respostas) {
+    let resposta = respostas;
+    resposta = resposta.sort(shuffle);
+
+    for (let i = 0; i < resposta.length; i++) {
+        alternativas +=`
+            <div class="resposta">
+                <img class="img-resposta" src="${resposta[i].image}" alt="" />
+                <p class="legenda">${resposta[i].text}</p>
+            </div>
+        `
+    }
+}
+
+
+
+
+
 
 function selecionarResposta (resposta) {
     console.log(resposta)
@@ -197,6 +204,6 @@ function renderCreationMenu(
 
 
 //shuffle cards
-function comparador() { 
+function shuffle() { 
 	return Math.random() - 0.5; 
 }
