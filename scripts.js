@@ -65,7 +65,7 @@ function verificaQuizzUsuario () {
   if (localStorage.length !== 0) {
     document.querySelector(".box-criar-quizz").classList.add("hide");
     document.querySelector(".seus-quizzes").classList.remove("hide");
-    //renderizarQuizzCriado ();
+    renderizarQuizzCriado ();
   }
 }
 
@@ -77,30 +77,29 @@ function buscarTodosQuizzes() {
 
 function todosquizzes(quizzes) {
   todosQuizzes = quizzes.data;
-  todosQuizzes = todosQuizzes.sort(shuffle);
+ // todosQuizzes = todosQuizzes.sort(shuffle);
   renderizarTodosQuizzes();
 }
 
 function erro(error) {
   console.log(error);
 }
-/*
+
 function renderizarQuizzCriado () {
   const boxQuizzUsuario = document.querySelector(".box-seus-quizzes");
   const userQuizzes = localStorage.getItem(`userQuizzes`);
   const listaQuizzUsuario = JSON.parse(userQuizzes);
-  console.log(listaQuizzUsuario);
 
   for (let i = 0; i < localStorage.length; i++) {
       const quizzUsuarioTamplate = `
-      <li class="quizz-usuario" onclick="getOneQuizz(${listaQuizzUsuario[i].id})>
-        <div class="titulo-quizz">${listaQuizzUsuario[i].title}</div>
-        <img class="img-bckgnd" src="${listaQuizzUsuario[i].image}" alt="">
+      <li class="quizz-usuario" onclick="getOneQuizz(${listaQuizzUsuario[i].id})">
+          <div class="titulo-quizz">${listaQuizzUsuario[i].title}</div>
+          <img class="img-bckgnd" src="${listaQuizzUsuario[i].image}" alt="">
       </li>
     `
-    boxQuizzUsuario.innerHTML += quizzUsuarioTamplate; 
-    }
-}*/
+    boxQuizzUsuario.innerHTML += quizzUsuarioTamplate;
+  }
+}
 
 function renderizarTodosQuizzes() {
   const quizzServer = document.querySelector(".box-todos-os-quizzes");
@@ -630,31 +629,20 @@ function levelsCreationFormsHandler() {
 
 function successfulQuizCreation(response) {
   const quizz = response.data;
-  const quizzId = quizz.id;
-  const userQuizzes = localStorage.getItem("userQuizzes");
-
-  console.log(response);
-  console.log(userQuizzes);
+  const userQuizzes = JSON.parse(localStorage.getItem("userQuizzes"));
 
   if (userQuizzes === null) {
-    localStorage.setItem("userQuizzes", JSON.stringify([quizzId]));
+    localStorage.setItem("userQuizzes", JSON.stringify([quizz]));
   } else {
-    localStorage.clear();
-    localStorage.setItem(
-      "userQuizzes",
-      JSON.stringify(JSON.parse(userQuizzes).push(quizzId))
-    );
+    userQuizzes.push(quizz);
+    localStorage.setItem("userQuizzes", JSON.stringify(userQuizzes));
   }
-
   renderSuccessfulPage(quizz);
 }
 
 function renderSuccessfulPage(quizz) {
   const inputBoxesContainers = document.querySelector(".quizz-creation-form");
 
-  toggleTela1();
-  toggleHideAllBody();
-  
   inputBoxesContainers.innerHTML = `
     <div class="successfulPage-container">
     <h1 class="forms-main-title">Seu quizz está pronto!</h1>
