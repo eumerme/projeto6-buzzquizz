@@ -289,7 +289,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /*   margin: 63px auto 0px auto; */
+  margin: 132px auto 0px auto;
 }
 
 .inputBoxContainer {
@@ -381,7 +381,7 @@ h1 {
   color: black;
   font-weight: 700;
   font-size: 23px;
-  margin: 70px auto 30px auto;
+  margin: 0px auto 30px auto;
 }
 
 .forms-container,
@@ -389,6 +389,29 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.successfulPage-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
+}
+
+.sucessfulQuizz {
+  width: 340px;
+  height: 181px;
+  border-radius: 5px;
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 0, 0, 0.5) 64.58%,
+    #000000 100%
+  );
+  background-size: cover;
+  margin: 7px auto 7px auto;
+  position: relative;
 }
 
 /*breakpoint 1100px*/
@@ -470,7 +493,7 @@ h1 {
     margin: 30px auto 30px auto;
   }
 
-  .red-button{
+  .red-button {
     margin: 30px auto 30px auto;
   }
 }

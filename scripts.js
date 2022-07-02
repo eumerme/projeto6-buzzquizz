@@ -48,6 +48,7 @@ function toggleBotoesQuizz() {
 function voltarHome() {
   toggleTela1();
   toggleTela2();
+  toggleHideAllBody();
 }
 
 function makeQuizz() {
@@ -277,6 +278,7 @@ function reiniciarQuizz() {
   }, 300);
 }
 
+//cuida das respostas inseridas no formulário de informações básicas do quizz
 function basicInformationsQuizz(element) {
   const formsContainerChildren = element.parentElement.children;
   const inputBoxContainer = formsContainerChildren[1].children;
@@ -287,8 +289,8 @@ function basicInformationsQuizz(element) {
   const urlValidation = (x) =>
     x.substring(0, 7) === "http://" || x.substring(0, 8) === "https://";
   const titleValidation = (x) => x.length >= 20 && x.length <= 65;
-  const quantityOfQuestionsValidation = (x) => x >= 3;
-  const quantityOfLevelsValidation = (x) => x >= 2;
+  const quantityOfQuestionsValidation = (x) => x >= 3; //3
+  const quantityOfLevelsValidation = (x) => x >= 2; //2
 
   if (
     (titleValidation(quizzTitle) &&
@@ -621,16 +623,18 @@ function successfulQuizCreation(response) {
 function renderSuccessfulPage(quizz) {
   const inputBoxesContainers = document.querySelector(".quizz-creation-form");
 
+  toggleHideAllBody();
+
   inputBoxesContainers.innerHTML = `
+  <div class="successfulPage-container">
   <h1 class="forms-main-title">Seu quizz está pronto!</h1>
-  <div class="quizz-server" onclick="getOneQuizz(this, ${quizz.id})">
-                <div class="titulo-quizz">${quizz.title}</div>
-                <img class="img-bckgnd" src="${quizz.image}" alt="">
-            </div>
-            <div class="red-button" onclick="questionsCreationFormsHandler()">Prosseguir pra criar níveis</div>
-            <div class="voltar-home" onclick="voltarHome();">
-        Voltar pra home
-      </div>
+  <div class="sucessfulQuizz" onclick="">
+    <div class="titulo-quizz">${quizz.title}</div>
+    <img class="img-bckgnd" src="${quizz.image}" alt="" />
+  </div>
+  <div class="red-button" onclick="getOneQuizz()">Acessar Quizz</div>
+  <div class="voltar-home" onclick="voltarHome();">Voltar para home</div>
+</div>
   `;
 }
 
