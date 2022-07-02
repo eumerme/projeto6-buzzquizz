@@ -55,7 +55,7 @@ function makeLevels () {
 
 //--------renderiza todos os quizzes da api
 
-buscarTodosQuizzes ();  //essa função tá comentada pra conseguir ver a função de buscar 1 quizz só 
+buscarTodosQuizzes ();  
 
 function buscarTodosQuizzes () {
     const promise = axios.get(`${urlApi}`);
@@ -65,6 +65,7 @@ function buscarTodosQuizzes () {
 
 function todosquizzes (quizzes) {
     todosQuizzes = quizzes.data; 
+    todosQuizzes = todosQuizzes.sort(shuffle);
     renderizarTodosQuizzes();   
 }
 
@@ -77,20 +78,18 @@ function renderizarTodosQuizzes () {
 
     for (let i = 0; i < todosQuizzes.length; i++) {
         const quizzTamplate = `
-            <li class="quizz-server" onclick="getOneQuizz(this, ${todosQuizzes[i].id})">
+            <li class="quizz-server" onclick="getOneQuizz(${todosQuizzes[i].id})">
                 <div class="titulo-quizz">${todosQuizzes[i].title}</div>
                 <img class="img-bckgnd" src="${todosQuizzes[i].image}" alt="">
             </li>
         `
         quizzServer.innerHTML += quizzTamplate;
     }
-
-    
 }
 
 
 //--------renderiza um quizz específico da api
-function getOneQuizz (elemento, id) {
+function getOneQuizz (id) {
     toggleTela1();
     toggleTela2 ();
     const promise = axios.get(`${urlApi}/${id}`);
@@ -180,7 +179,7 @@ function alternativaSelecionada(alternativaEscolhida) {
                 alternativa[j].removeAttribute("onclick");
                 alternativa[j].querySelector(".legenda").classList.add("resposta-errada");
 
-                let respostaCorreta = perguntasApi[i].answers[j].isCorrectAnswer 
+                let respostaCorreta = perguntasApi[i].answers[j].isCorrectAnswer; 
                 console.log(respostaCorreta)
             
                 if (respostaCorreta === true) {
@@ -258,7 +257,11 @@ function reiniciarQuizz () {
   total = 0;
   tela2.innerHTML = estadoInicialQuizz;
   
-  setTimeout ( () => {document.querySelector(".box-resultado").classList.add("hide"); toggleBotoesQuizz ()}, 300);
+  setTimeout (() => {
+    document.querySelector(".box-resultado").classList.add("hide"); 
+    toggleBotoesQuizz ()}, 
+    300
+  );
 }
 
 
