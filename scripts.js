@@ -622,15 +622,15 @@ function renderSuccessfulPage(quizz) {
   toggleHideAllBody();
 
   inputBoxesContainers.innerHTML = `
-  <div class="successfulPage-container">
-  <h1 class="forms-main-title">Seu quizz está pronto!</h1>
-  <div class="sucessfulQuizz" onclick="">
-    <div class="titulo-quizz">${quizz.title}</div>
-    <img class="img-bckgnd" src="${quizz.image}" alt="" />
-  </div>
-  <div class="red-button" onclick="getOneQuizz()">Acessar Quizz</div>
-  <div class="voltar-home" onclick="voltarHome();">Voltar para home</div>
-</div>
+    <div class="successfulPage-container">
+      <h1 class="forms-main-title">Seu quizz está pronto!</h1>
+    <div class="sucessfulQuizz" onclick="">
+      <div class="titulo-quizz">${quizz.title}</div>
+      <img class="img-bckgnd" src="${quizz.image}" alt="" />
+    </div>
+    <div class="red-button" onclick="getOneQuizz()">Acessar Quizz</div>
+    <div class="voltar-home" onclick="voltarHome();">Voltar para home</div>
+    </div>
   `;
 }
 
