@@ -222,7 +222,9 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #434ca0;
-  padding: 5px;
+  padding: 5px;  
+  word-wrap: break-word; 
+  text-align: center;
 }
 
 .nivel-acerto {

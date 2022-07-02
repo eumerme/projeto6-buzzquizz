@@ -40,16 +40,7 @@ function toggleBotoesQuizz() {
 }
 
 function voltarHome() {
-  toggleTela1();
-  toggleTela2();
-  toggleBotoesQuizz();
-  totalUsuario = 0;
-  total = 0;
-  resultadoTitulo = ``;
-  resultadoImagem = ``;
-  resultadoTexto = ``;
-  tela2.innerHTML = ``;
-  boxResultado.classList.add("hide");
+  window.location.reload();
 }
 
 function makeQuizz() {
@@ -88,8 +79,9 @@ function renderizarQuizzCriado () {
   const boxQuizzUsuario = document.querySelector(".box-seus-quizzes");
   const userQuizzes = localStorage.getItem(`userQuizzes`);
   const listaQuizzUsuario = JSON.parse(userQuizzes);
+  console.log(listaQuizzUsuario);
 
-  for (let i = 0; i < localStorage.length; i++) {
+  for (let i = 0; i < listaQuizzUsuario.length; i++) {
       const quizzUsuarioTamplate = `
       <li class="quizz-usuario" onclick="getOneQuizz(${listaQuizzUsuario[i].id})">
           <div class="titulo-quizz">${listaQuizzUsuario[i].title}</div>
@@ -233,7 +225,6 @@ function alternativaSelecionada(alternativaEscolhida) {
 
 function scrollNextQuestion() {
   if (total === perguntasApi.length) {
-    console.log("resultado");
     resultado();
     document
       .querySelector(".resultado")
@@ -301,8 +292,7 @@ function reiniciarQuizz() {
   resultadoTexto = ``;
   setTimeout(() => {
     document.querySelector(".box-resultado").classList.add("hide");
-    toggleBotoesQuizz();
-  }, 300);
+    toggleBotoesQuizz()}, 300);
 }
 
 //cuida das respostas inseridas no formulário de informações básicas do quizz
