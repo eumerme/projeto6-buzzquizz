@@ -11,13 +11,17 @@ body {
 
 /*-------------header*/
 .header {
-  width: 100%;
+  width: 100vw;
   height: 69px;
   background-color: #ec362d;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .titulo-header {
@@ -28,7 +32,7 @@ body {
 
 /*--------------Tela 1 - Lista de Quizzes*/
 .container-tela1 {
-  width: 83%;
+  max-width: 83%;;
   margin: 0 auto 200px auto;
 }
 
@@ -41,7 +45,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 77px;
+  margin-top: 144px;
 }
 
 .info {
@@ -68,16 +72,21 @@ body {
   cursor: pointer;
 }
 
-.info-seus-quizzes,
+.info-seus-titulo,
 .info-todos-quizzes {
   font-size: 20px;
   font-weight: 700;
+  margin-left:  8px;
+}
+
+.info-todos-quizzes {
   margin-top: 75px;
 }
 
 .info-seus-quizzes {
   display: flex;
   align-items: center;
+  margin: 144px 0 5px 0; 
 }
 
 .info-seus-quizzes > ion-icon {
@@ -110,7 +119,7 @@ body {
     #000000 100%
   );
   background-size: cover;
-  margin: 7px;
+  margin: 15px 7px; 
   position: relative;
 }
 
@@ -135,6 +144,7 @@ body {
 
 /*---------------Tela 2 - Página de um Quiz*/
 .container-tela2 {
+  margin-top: 69px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -149,6 +159,13 @@ body {
   text-align: center;
   margin-bottom: 42px;
   position: relative;
+}
+
+.conteudo-tela2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .img-banner,
@@ -226,10 +243,11 @@ body {
 }
 
 .legenda {
-  font-size: 23px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 23px;
   margin-top: 12px;
+  word-wrap: break-word; 
   color: #000000;
 }
 
@@ -243,6 +261,7 @@ body {
   font-size: 19px;
   font-weight: 700;
   line-height: 25px;
+  word-wrap: break-word; 
   color: #484848;
 }
 
@@ -274,7 +293,10 @@ body {
 }
 
 .red-button,
-.voltar-home:hover {
+.voltar-home,
+.button-criar-quizz,
+.quizz-server,
+.ionicon-criar-quizz:hover {
   cursor: pointer;
 }
 
@@ -285,11 +307,21 @@ body {
   margin-bottom: 25px;
 }
 
+h1 {
+  color: black;
+  font-weight: 700;
+  font-size: 23px;
+}
+
+.container {
+  margin: 0px auto;
+}
+
 .forms-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 132px auto 0px auto;
+  margin: 132px auto 0px auto; 
 }
 
 .inputBoxContainer {
@@ -416,7 +448,6 @@ h1 {
 
 /*breakpoint 1100px*/
 @media (max-width: 1100px) {
-  /*-------------TELA 2*/
   .banner {
     height: 142px;
   }
@@ -433,8 +464,18 @@ h1 {
 
   .box-pergunta-resposta,
   .box-resultado {
-    width: 436px;
-    padding: 18px;
+    width: 100%;
+    padding: 15px;
+  }
+
+  .resposta {
+    max-width: 50%;
+    min-width: 50%;
+    padding: 9px;
+  }
+
+  .img-resposta {
+    object-fit: cover;
   }
 
   .box-pergunta,
@@ -444,14 +485,6 @@ h1 {
     font-weight: 700;
     line-height: 22px;
     text-align: center;
-  }
-
-  .resposta {
-    width: 194px;
-  }
-
-  .img-resposta {
-    height: 134px;
   }
 
   .legenda {
@@ -496,11 +529,7 @@ h1 {
   .red-button {
     margin: 30px auto 30px auto;
   }
-}
 
-/*breakpoint 436px*/
-@media (max-width: 436px) {
-  /*-------------TELA 1*/
   .box-todos-os-quizzes,
   .box-seus-quizzes {
     flex-direction: column;
@@ -514,24 +543,6 @@ h1 {
 
   .info-seus-quizzes {
     justify-content: space-between;
-  }
-
-  /*-------------TELA 2*/
-  .box-pergunta-resposta,
-  .box-resultado {
-    width: 100%;
-  }
-
-  .resposta {
-    width: 163px;
-  }
-
-  .img-resposta {
-    height: 113px;
-  }
-
-  .inputBoxContainer {
-    min-width: 0px;
   }
 }
 

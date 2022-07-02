@@ -11,11 +11,10 @@ const creatingQuizzBasicInformation = {
   quantityOfLevels: "",
   quantityOfQuestions: "",
 };
-let todosQuizzes, quizzAPI, perguntasApi, resposta;
+let todosQuizzes, quizzAPI, perguntasApi;
 let totalUsuario = 0;
 let total = 0;
-let alternativaClicada;
-let resultadoTitulo, resultadoImagem, resultadoTexto;
+let boxResultado, resultadoTitulo, resultadoImagem, resultadoTexto;
 let tela2, estadoInicialQuizz;
 
 function toggleTela1() {
@@ -33,11 +32,6 @@ function toggleTela31() {
   containerTela31.classList.toggle("hide");
 }
 
-function toggleTela32() {
-  const containerTela32 = document.querySelector(".forms-container-infos");
-  containerTela32.classList.toggle("hide");
-}
-
 function toggleBotoesQuizz() {
   const botaoReiniciar = document.querySelector(".reiniciarQuizz");
   botaoReiniciar.classList.toggle("hide");
@@ -48,7 +42,11 @@ function toggleBotoesQuizz() {
 function voltarHome() {
   toggleTela1();
   toggleTela2();
-  toggleHideAllBody();
+  toggleBotoesQuizz()
+  totalUsuario, total = 0;
+  resultadoTitulo, resultadoImagem, resultadoTexto = ``;
+  tela2.innerHTML = ``;
+  boxResultado.classList.add("hide");
 }
 
 function makeQuizz() {
@@ -56,17 +54,8 @@ function makeQuizz() {
   toggleTela31();
 }
 
-//essa função faz funcionar o botão de "Prosseguir para criar níveis",
-//mas desativa a validação
-/* 
-function makeLevels () {
-    toggleTela31();
-    toggleTela32();
-}*/
-
 //--------renderiza todos os quizzes da api
-
-buscarTodosQuizzes(); //essa função tá comentada pra conseguir ver a função de buscar 1 quizz só
+buscarTodosQuizzes ();  
 
 function buscarTodosQuizzes() {
   const promise = axios.get(`${urlApi}quizzes`);
@@ -74,9 +63,10 @@ function buscarTodosQuizzes() {
   promise.then(todosquizzes);
 }
 
-function todosquizzes(quizzes) {
-  todosQuizzes = quizzes.data;
-  renderizarTodosQuizzes();
+function todosquizzes (quizzes) {
+    todosQuizzes = quizzes.data; 
+    todosQuizzes = todosQuizzes.sort(shuffle);
+    renderizarTodosQuizzes();   
 }
 
 function erro(error) {
@@ -86,24 +76,25 @@ function erro(error) {
 function renderizarTodosQuizzes() {
   const quizzServer = document.querySelector(".box-todos-os-quizzes");
 
-  for (let i = 0; i < todosQuizzes.length; i++) {
-    const quizzTamplate = `
-            <li class="quizz-server" onclick="getOneQuizz(this, ${todosQuizzes[i].id})">
+    for (let i = 0; i < todosQuizzes.length; i++) {
+        const quizzTamplate = `
+            <li class="quizz-server" onclick="getOneQuizz(${todosQuizzes[i].id})">
                 <div class="titulo-quizz">${todosQuizzes[i].title}</div>
                 <img class="img-bckgnd" src="${todosQuizzes[i].image}" alt="">
             </li>
-        `;
-    quizzServer.innerHTML += quizzTamplate;
-  }
+        `
+        quizzServer.innerHTML += quizzTamplate;
+    }
 }
 
 //--------renderiza um quizz específico da api
-function getOneQuizz(elemento, id) {
-  toggleTela1();
-  toggleTela2();
-  const promise = axios.get(`${urlApi}quizzes/${id}`);
-  promise.catch(erro);
-  promise.then(umquizz);
+function getOneQuizz (id) {
+    toggleTela1();
+    toggleTela2 ();
+    const promise = axios.get(`${urlApi}quizzes/${id}`);
+ // const promise = axios.get(`${urlApi}quizzes/158`); //pra ir só pro quizz do lele pra testar
+    promise.catch(erro);
+    promise.then(umquizz);   
 }
 
 function umquizz(quizz) {
@@ -156,7 +147,7 @@ function renderizarQuizzSelecionado() {
 }
 
 function gerarAlternativas(respostas, indice) {
-  resposta = respostas;
+  let resposta = respostas;
   resposta = resposta.sort(shuffle);
 
   for (let i = 0; i < resposta.length; i++) {
@@ -172,19 +163,12 @@ function gerarAlternativas(respostas, indice) {
 function alternativaSelecionada(alternativaEscolhida) {
   const boxPerguntas = alternativaEscolhida.parentNode;
   boxPerguntas.classList.add("clicado");
-  console.log(boxPerguntas);
 
   for (let i = 0; i < perguntasApi.length + 1; i++) {
-    let contemClasse = boxPerguntas.classList.contains(
-      `todas-alternativas${i}`
-    );
-    console.log(contemClasse);
-
+    let contemClasse = boxPerguntas.classList.contains(`todas-alternativas${i}`);
+    
     if (contemClasse === true) {
-      const alternativa = document.querySelectorAll(
-        `.todas-alternativas${i} .resposta`
-      );
-      console.log(alternativa);
+      const alternativa = document.querySelectorAll(`.todas-alternativas${i} .resposta`);
 
       for (let j = 0; j < alternativa.length; j++) {
         alternativa[j].classList.add("blur");
@@ -198,7 +182,6 @@ function alternativaSelecionada(alternativaEscolhida) {
 
         if (respostaCorreta === true) {
           const certa = document.getElementById(`${i}${j}`);
-          console.log(certa);
           certa.classList.remove("resposta-errada");
           certa.classList.add("resposta-certa");
 
@@ -206,7 +189,6 @@ function alternativaSelecionada(alternativaEscolhida) {
 
           if (escolhida.innerHTML === certa.innerHTML) {
             totalUsuario++;
-            console.log(totalUsuario);
           }
         }
       }
@@ -215,7 +197,6 @@ function alternativaSelecionada(alternativaEscolhida) {
   }
 
   total++;
-  console.log(total);
   setTimeout(scrollNextQuestion, 2000);
 }
 
@@ -223,30 +204,42 @@ function scrollNextQuestion() {
   if (total === perguntasApi.length) {
     console.log("resultado");
     resultado();
+    document.querySelector(".resultado").scrollIntoView({block: "center", behavior: "smooth"});
   }
 
-  alternativaClicada = document
+  let alternativaClicada = document
     .getElementById(`id${total - 1}`)
     .classList.contains("clicado");
-  if (alternativaClicada === true) {
+  
+    if (alternativaClicada === true) {
     document
-      .getElementById(`id${total - 1}`)
-      .lastElementChild.scrollIntoView({ behavior: "smooth" });
+      .getElementById(`id${total}`)
+      .scrollIntoView({block: "center", behavior: "smooth"});
+
   }
 }
 
 function resultado() {
   let pontuacao = Math.round((totalUsuario / total) * 100);
 
-  const boxResultado = document.querySelector(".box-resultado");
+  boxResultado = document.querySelector(".box-resultado");
   boxResultado.classList.remove("hide");
 
-  for (let i = 0; i < quizzAPI.levels.length; i++) {
-    //tá pegando só o level mais baixo
-    if (pontuacao >= quizzAPI.levels[i].minValue) {
-      resultadoTitulo = quizzAPI.levels[i].title;
-      resultadoImagem = quizzAPI.levels[i].image;
-      resultadoTexto = quizzAPI.levels[i].text;
+  let nivelMinimo= 0; 
+
+  for (let i = 0; i < quizzAPI.levels.length; i++) { 
+    let ponutuacaoSuficiente = pontuacao >= quizzAPI.levels[i].minValue;
+
+    if (ponutuacaoSuficiente) {
+      let nivelQuizz = quizzAPI.levels[i].minValue;
+
+      if (nivelQuizz >= nivelMinimo) { 
+        nivelMinimo = nivelQuizz;
+      
+        resultadoTitulo = quizzAPI.levels[i].title; 
+        resultadoImagem = quizzAPI.levels[i].image;
+        resultadoTexto = quizzAPI.levels[i].text;
+      }       
     }
   }
 
@@ -271,11 +264,14 @@ function reiniciarQuizz() {
   totalUsuario = 0;
   total = 0;
   tela2.innerHTML = estadoInicialQuizz;
+  resultadoTitulo, resultadoImagem, resultadoTexto = ``;
 
-  setTimeout(() => {
-    document.querySelector(".box-resultado").classList.add("hide");
-    toggleBotoesQuizz();
-  }, 300);
+  setTimeout (() => {
+    document.querySelector(".box-resultado").classList.add("hide"); 
+    toggleBotoesQuizz ()
+  }, 
+    300
+  );
 }
 
 //cuida das respostas inseridas no formulário de informações básicas do quizz
@@ -470,7 +466,7 @@ function questionsCreationFormsHandler() {
       }
 
       tempQuestions[tempQuestions.length - 1].answers.push({
-        text: wrongAnswer3,
+        text: wrongAnswer2,
         image: wrong3ImageURL,
         isCorrectAnswer: false,
       });
@@ -641,6 +637,9 @@ function renderSuccessfulPage(quizz) {
 function removeMinimized(element) {
   element.classList.remove("minimized");
 }
+
+
+
 
 /**
  * Adiciona a classe .hide em todos os filhos de body exceto no header.
