@@ -58,7 +58,16 @@ function makeQuizz() {
 }
 
 //--------renderiza todos os quizzes da api
+verificaQuizzUsuario ();
 buscarTodosQuizzes();
+
+function verificaQuizzUsuario () {
+  if (localStorage.length !== 0) {
+    document.querySelector(".box-criar-quizz").classList.add("hide");
+    document.querySelector(".seus-quizzes").classList.remove("hide");
+    renderizarQuizzCriado ();
+  }
+}
 
 function buscarTodosQuizzes() {
   const promise = axios.get(`${urlApi}quizzes`);
@@ -68,12 +77,28 @@ function buscarTodosQuizzes() {
 
 function todosquizzes(quizzes) {
   todosQuizzes = quizzes.data;
-  todosQuizzes = todosQuizzes.sort(shuffle);
+ // todosQuizzes = todosQuizzes.sort(shuffle);
   renderizarTodosQuizzes();
 }
 
 function erro(error) {
   console.log(error);
+}
+
+function renderizarQuizzCriado () {
+  const boxQuizzUsuario = document.querySelector(".box-seus-quizzes");
+  const userQuizzes = localStorage.getItem(`userQuizzes`);
+  const listaQuizzUsuario = JSON.parse(userQuizzes);
+
+  for (let i = 0; i < localStorage.length; i++) {
+      const quizzUsuarioTamplate = `
+      <li class="quizz-usuario" onclick="getOneQuizz(${listaQuizzUsuario[i].id})">
+          <div class="titulo-quizz">${listaQuizzUsuario[i].title}</div>
+          <img class="img-bckgnd" src="${listaQuizzUsuario[i].image}" alt="">
+      </li>
+    `
+    boxQuizzUsuario.innerHTML += quizzUsuarioTamplate;
+  }
 }
 
 function renderizarTodosQuizzes() {
@@ -121,7 +146,7 @@ function renderizarQuizzSelecionado() {
 
   tela2 = document.querySelector(".conteudo-tela2");
   perguntasApi = quizzAPI.questions;
-  perguntasApi = perguntasApi.sort(shuffle);
+ // perguntasApi = perguntasApi.sort(shuffle);
 
   for (let i = 0; i < perguntasApi.length; i++) {
     gerarAlternativas(perguntasApi[i].answers, i);
