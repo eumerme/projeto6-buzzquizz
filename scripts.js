@@ -43,8 +43,11 @@ function voltarHome() {
   toggleTela1();
   toggleTela2();
   toggleBotoesQuizz();
-  totalUsuario, (total = 0);
-  resultadoTitulo, resultadoImagem, (resultadoTexto = ``);
+  totalUsuario = 0;
+  total = 0;
+  resultadoTitulo = ``;
+  resultadoImagem = ``;
+  resultadoTexto = ``;
   tela2.innerHTML = ``;
   boxResultado.classList.add("hide");
 }
@@ -269,12 +272,13 @@ function reiniciarQuizz() {
   totalUsuario = 0;
   total = 0;
   tela2.innerHTML = estadoInicialQuizz;
-  resultadoTitulo, resultadoImagem, (resultadoTexto = ``);
-
+  resultadoTitulo = ``;
+  resultadoImagem = ``;
+  resultadoTexto = ``;
   setTimeout(() => {
     document.querySelector(".box-resultado").classList.add("hide");
-    toggleBotoesQuizz();
-  }, 300);
+    toggleBotoesQuizz()}, 
+    300);
 }
 
 //cuida das respostas inseridas no formulário de informações básicas do quizz
@@ -615,15 +619,15 @@ function renderSuccessfulPage(quizz) {
   const inputBoxesContainers = document.querySelector(".quizz-creation-form");
 
   inputBoxesContainers.innerHTML = `
-  <div class="successfulPage-container">
-  <h1 class="forms-main-title">Seu quizz está pronto!</h1>
-  <div class="sucessfulQuizz" onclick="">
-    <div class="titulo-quizz">${quizz.title}</div>
-    <img class="img-bckgnd" src="${quizz.image}" alt="" />
-  </div>
-  <div class="red-button" onclick="getOneQuizz(${quizz.id})">Acessar Quizz</div>
-  <div class="voltar-home" onclick="voltarHome(); toggleHideAllBody()">Voltar para home</div>
-</div>
+    <div class="successfulPage-container">
+    <h1 class="forms-main-title">Seu quizz está pronto!</h1>
+    <div class="sucessfulQuizz" onclick="">
+      <div class="titulo-quizz">${quizz.title}</div>
+      <img class="img-bckgnd" src="${quizz.image}" alt="" />
+    </div>
+     <div class="red-button" onclick="getOneQuizz(${quizz.id})">Acessar Quizz</div>
+     <div class="voltar-home" onclick="voltarHome(); toggleHideAllBody()">Voltar para home</div>
+    </div>
   `;
 }
 
