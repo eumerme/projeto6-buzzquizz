@@ -600,29 +600,20 @@ function levelsCreationFormsHandler() {
 
 function successfulQuizCreation(response) {
   const quizz = response.data;
-  const quizzId = quizz.id;
   const userQuizzes = JSON.parse(localStorage.getItem("userQuizzes"));
 
-  console.log(userQuizzes);
-
   if (userQuizzes === null) {
-    localStorage.setItem("userQuizzes", JSON.stringify(new Array([quizzId])));
+    localStorage.setItem("userQuizzes", JSON.stringify([quizz]));
   } else {
-    localStorage.setItem(
-      "userQuizzes",
-      JSON.stringify(userQuizzes.push(quizzId))
-    );
+    userQuizzes.push(quizz);
+    localStorage.setItem("userQuizzes", JSON.stringify(userQuizzes));
   }
-
   renderSuccessfulPage(quizz);
 }
 
 function renderSuccessfulPage(quizz) {
   const inputBoxesContainers = document.querySelector(".quizz-creation-form");
 
-  toggleTela1();
-  toggleHideAllBody();
-  
   inputBoxesContainers.innerHTML = `
   <div class="successfulPage-container">
   <h1 class="forms-main-title">Seu quizz está pronto!</h1>
