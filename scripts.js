@@ -42,9 +42,9 @@ function toggleBotoesQuizz() {
 function voltarHome() {
   toggleTela1();
   toggleTela2();
-  toggleBotoesQuizz()
-  totalUsuario, total = 0;
-  resultadoTitulo, resultadoImagem, resultadoTexto = ``;
+  toggleBotoesQuizz();
+  totalUsuario, (total = 0);
+  resultadoTitulo, resultadoImagem, (resultadoTexto = ``);
   tela2.innerHTML = ``;
   boxResultado.classList.add("hide");
 }
@@ -55,7 +55,7 @@ function makeQuizz() {
 }
 
 //--------renderiza todos os quizzes da api
-buscarTodosQuizzes ();  
+buscarTodosQuizzes();
 
 function buscarTodosQuizzes() {
   const promise = axios.get(`${urlApi}quizzes`);
@@ -63,10 +63,10 @@ function buscarTodosQuizzes() {
   promise.then(todosquizzes);
 }
 
-function todosquizzes (quizzes) {
-    todosQuizzes = quizzes.data; 
-    todosQuizzes = todosQuizzes.sort(shuffle);
-    renderizarTodosQuizzes();   
+function todosquizzes(quizzes) {
+  todosQuizzes = quizzes.data;
+  todosQuizzes = todosQuizzes.sort(shuffle);
+  renderizarTodosQuizzes();
 }
 
 function erro(error) {
@@ -76,25 +76,25 @@ function erro(error) {
 function renderizarTodosQuizzes() {
   const quizzServer = document.querySelector(".box-todos-os-quizzes");
 
-    for (let i = 0; i < todosQuizzes.length; i++) {
-        const quizzTamplate = `
+  for (let i = 0; i < todosQuizzes.length; i++) {
+    const quizzTamplate = `
             <li class="quizz-server" onclick="getOneQuizz(${todosQuizzes[i].id})">
                 <div class="titulo-quizz">${todosQuizzes[i].title}</div>
                 <img class="img-bckgnd" src="${todosQuizzes[i].image}" alt="">
             </li>
-        `
-        quizzServer.innerHTML += quizzTamplate;
-    }
+        `;
+    quizzServer.innerHTML += quizzTamplate;
+  }
 }
 
 //--------renderiza um quizz específico da api
-function getOneQuizz (id) {
-    toggleTela1();
-    toggleTela2 ();
-    const promise = axios.get(`${urlApi}quizzes/${id}`);
- // const promise = axios.get(`${urlApi}quizzes/158`); //pra ir só pro quizz do lele pra testar
-    promise.catch(erro);
-    promise.then(umquizz);   
+function getOneQuizz(id) {
+  toggleTela1();
+  toggleTela2();
+  const promise = axios.get(`${urlApi}quizzes/${id}`);
+  // const promise = axios.get(`${urlApi}quizzes/158`); //pra ir só pro quizz do lele pra testar
+  promise.catch(erro);
+  promise.then(umquizz);
 }
 
 function umquizz(quizz) {
@@ -165,10 +165,14 @@ function alternativaSelecionada(alternativaEscolhida) {
   boxPerguntas.classList.add("clicado");
 
   for (let i = 0; i < perguntasApi.length + 1; i++) {
-    let contemClasse = boxPerguntas.classList.contains(`todas-alternativas${i}`);
-    
+    let contemClasse = boxPerguntas.classList.contains(
+      `todas-alternativas${i}`
+    );
+
     if (contemClasse === true) {
-      const alternativa = document.querySelectorAll(`.todas-alternativas${i} .resposta`);
+      const alternativa = document.querySelectorAll(
+        `.todas-alternativas${i} .resposta`
+      );
 
       for (let j = 0; j < alternativa.length; j++) {
         alternativa[j].classList.add("blur");
@@ -204,18 +208,19 @@ function scrollNextQuestion() {
   if (total === perguntasApi.length) {
     console.log("resultado");
     resultado();
-    document.querySelector(".resultado").scrollIntoView({block: "center", behavior: "smooth"});
+    document
+      .querySelector(".resultado")
+      .scrollIntoView({ block: "center", behavior: "smooth" });
   }
 
   let alternativaClicada = document
     .getElementById(`id${total - 1}`)
     .classList.contains("clicado");
-  
-    if (alternativaClicada === true) {
+
+  if (alternativaClicada === true) {
     document
       .getElementById(`id${total}`)
-      .scrollIntoView({block: "center", behavior: "smooth"});
-
+      .scrollIntoView({ block: "center", behavior: "smooth" });
   }
 }
 
@@ -225,21 +230,21 @@ function resultado() {
   boxResultado = document.querySelector(".box-resultado");
   boxResultado.classList.remove("hide");
 
-  let nivelMinimo= 0; 
+  let nivelMinimo = 0;
 
-  for (let i = 0; i < quizzAPI.levels.length; i++) { 
+  for (let i = 0; i < quizzAPI.levels.length; i++) {
     let ponutuacaoSuficiente = pontuacao >= quizzAPI.levels[i].minValue;
 
     if (ponutuacaoSuficiente) {
       let nivelQuizz = quizzAPI.levels[i].minValue;
 
-      if (nivelQuizz >= nivelMinimo) { 
+      if (nivelQuizz >= nivelMinimo) {
         nivelMinimo = nivelQuizz;
-      
-        resultadoTitulo = quizzAPI.levels[i].title; 
+
+        resultadoTitulo = quizzAPI.levels[i].title;
         resultadoImagem = quizzAPI.levels[i].image;
         resultadoTexto = quizzAPI.levels[i].text;
-      }       
+      }
     }
   }
 
@@ -264,14 +269,12 @@ function reiniciarQuizz() {
   totalUsuario = 0;
   total = 0;
   tela2.innerHTML = estadoInicialQuizz;
-  resultadoTitulo, resultadoImagem, resultadoTexto = ``;
+  resultadoTitulo, resultadoImagem, (resultadoTexto = ``);
 
-  setTimeout (() => {
-    document.querySelector(".box-resultado").classList.add("hide"); 
-    toggleBotoesQuizz ()
-  }, 
-    300
-  );
+  setTimeout(() => {
+    document.querySelector(".box-resultado").classList.add("hide");
+    toggleBotoesQuizz();
+  }, 300);
 }
 
 //cuida das respostas inseridas no formulário de informações básicas do quizz
@@ -598,18 +601,16 @@ function levelsCreationFormsHandler() {
 function successfulQuizCreation(response) {
   const quizz = response.data;
   const quizzId = quizz.id;
-  const userQuizzes = localStorage.getItem("userQuizzes");
+  const userQuizzes = JSON.parse(localStorage.getItem("userQuizzes"));
 
-  console.log(response);
   console.log(userQuizzes);
 
   if (userQuizzes === null) {
-    localStorage.setItem("userQuizzes", JSON.stringify([quizzId]));
+    localStorage.setItem("userQuizzes", JSON.stringify(new Array([quizzId])));
   } else {
-    localStorage.clear();
     localStorage.setItem(
       "userQuizzes",
-      JSON.stringify(JSON.parse(userQuizzes).push(quizzId))
+      JSON.stringify(userQuizzes.push(quizzId))
     );
   }
 
@@ -619,8 +620,9 @@ function successfulQuizCreation(response) {
 function renderSuccessfulPage(quizz) {
   const inputBoxesContainers = document.querySelector(".quizz-creation-form");
 
+  toggleTela1();
   toggleHideAllBody();
-
+  
   inputBoxesContainers.innerHTML = `
   <div class="successfulPage-container">
   <h1 class="forms-main-title">Seu quizz está pronto!</h1>
@@ -628,8 +630,8 @@ function renderSuccessfulPage(quizz) {
     <div class="titulo-quizz">${quizz.title}</div>
     <img class="img-bckgnd" src="${quizz.image}" alt="" />
   </div>
-  <div class="red-button" onclick="getOneQuizz()">Acessar Quizz</div>
-  <div class="voltar-home" onclick="voltarHome();">Voltar para home</div>
+  <div class="red-button" onclick="getOneQuizz(${quizz.id})">Acessar Quizz</div>
+  <div class="voltar-home" onclick="voltarHome(); toggleHideAllBody()">Voltar para home</div>
 </div>
   `;
 }
@@ -637,9 +639,6 @@ function renderSuccessfulPage(quizz) {
 function removeMinimized(element) {
   element.classList.remove("minimized");
 }
-
-
-
 
 /**
  * Adiciona a classe .hide em todos os filhos de body exceto no header.
