@@ -77,7 +77,6 @@ function buscarTodosQuizzes() {
 
 function todosquizzes(quizzes) {
   todosQuizzes = quizzes.data;
- // todosQuizzes = todosQuizzes.sort(shuffle);
   renderizarTodosQuizzes();
 }
 
@@ -104,7 +103,7 @@ function renderizarQuizzCriado () {
 function renderizarTodosQuizzes() {
   const quizzServer = document.querySelector(".box-todos-os-quizzes");
 
-  for (let i = 0; i < todosQuizzes.length; i++) {
+  for (let i = 0; i < 12; i++) {
     const quizzTamplate = `
             <li class="quizz-server" onclick="getOneQuizz(${todosQuizzes[i].id})">
                 <div class="titulo-quizz">${todosQuizzes[i].title}</div>

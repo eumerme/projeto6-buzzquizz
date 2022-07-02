@@ -118,7 +118,6 @@ body {
     rgba(0, 0, 0, 0.5) 64.58%,
     #000000 100%
   );
-  background-size: cover;
   margin: 15px 7px; 
   position: relative;
 }
@@ -130,6 +129,7 @@ body {
   position: absolute;
   top: 0;
   z-index: -1;
+  object-fit: cover;
 }
 
 .titulo-quizz {
@@ -175,6 +175,7 @@ body {
   position: absolute;
   top: 0;
   z-index: -1;
+  object-fit: cover;
 }
 
 .opaco {
@@ -540,6 +541,7 @@ h1 {
   .quizz-usuario,
   .img-bckgnd {
     width: 100%;
+    object-fit: cover;
   }
 
   .info-seus-quizzes {
