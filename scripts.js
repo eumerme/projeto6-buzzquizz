@@ -301,8 +301,8 @@ function reiniciarQuizz() {
   resultadoTexto = ``;
   setTimeout(() => {
     document.querySelector(".box-resultado").classList.add("hide");
-    toggleBotoesQuizz()}, 
-    300);
+    toggleBotoesQuizz();
+  }, 300);
 }
 
 //cuida das respostas inseridas no formulário de informações básicas do quizz
@@ -639,6 +639,58 @@ function successfulQuizCreation(response) {
   renderSuccessfulPage(quizz);
 }
 
+function getQuizzByID(id) {
+  const promise = axios.get(`${urlApi}quizzes/${id}`);
+  promise.catch(erro);
+  promise.then(renderQuizzPage);
+}
+
+function renderQuizzPage(response) {
+  quizzAPI = response.data;
+
+  const quizzCreationForm = document.querySelector(".quizz-creation-form");
+  quizzCreationForm.innerHTML = "";
+  quizzCreationForm.classList.add("hide");
+  document.querySelector(".container-tela2").classList.remove("hide");
+
+  const banner = document.querySelector(".banner");
+  const bannerTamplate = `
+        <h1 class="titulo-banner">${quizzAPI.title}</h1>
+        <img class="img-banner" src="${quizzAPI.image}" alt="">
+        <div class="opaco"></div>
+    `;
+  banner.innerHTML = bannerTamplate;
+
+  tela2 = document.querySelector(".conteudo-tela2");
+  perguntasApi = quizzAPI.questions;
+  perguntasApi = perguntasApi.sort(shuffle);
+
+  for (let i = 0; i < perguntasApi.length; i++) {
+    gerarAlternativas(perguntasApi[i].answers, i);
+
+    const boxPerguntaREsposta = `
+        <div class="box-pergunta-resposta">
+            <div id="${i}" class="box-pergunta">
+                ${perguntasApi[i].title}
+            </div>
+            
+            <div id="id${i}" class="box-resposta todas-alternativas${[i]}">
+                ${alternativas}
+            </div> 
+            </div>         
+        </div>
+        `;
+    alternativas = "";
+    tela2.innerHTML += boxPerguntaREsposta;
+
+    document.getElementById([
+      i,
+    ]).style.backgroundColor = `${perguntasApi[i].color}`;
+  }
+
+  estadoInicialQuizz = tela2.innerHTML;
+}
+
 function renderSuccessfulPage(quizz) {
   const inputBoxesContainers = document.querySelector(".quizz-creation-form");
 
@@ -649,7 +701,7 @@ function renderSuccessfulPage(quizz) {
       <div class="titulo-quizz">${quizz.title}</div>
       <img class="img-bckgnd" src="${quizz.image}" alt="" />
     </div>
-     <div class="red-button" onclick="getOneQuizz(${quizz.id})">Acessar Quizz</div>
+     <div class="red-button" onclick="getQuizzByID(${quizz.id})">Acessar Quizz</div>
      <div class="voltar-home" onclick="voltarHome(); toggleHideAllBody()">Voltar para home</div>
     </div>
   `;
