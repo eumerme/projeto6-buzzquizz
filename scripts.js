@@ -48,7 +48,7 @@ function makeQuizz() {
   toggleTela31();
 }
 
-//renderiza todos os quizzes da api
+//--------renderiza todos os quizzes da api
 verificaQuizzUsuario();
 buscarTodosQuizzes();
 
@@ -68,9 +68,12 @@ function buscarTodosQuizzes() {
 
 function todosquizzes(quizzes) {
   const userQuizzes = JSON.parse(localStorage.getItem("userQuizzes"));
+
   if (userQuizzes === null) {
+    todosQuizzes = quizzes.data;
     renderizarTodosQuizzes();
-  };
+    return;
+  }
 
   todosQuizzes = quizzes.data.filter((x) => {
     if (userQuizzes.find((y) => y.id === x.id) === undefined) {
@@ -79,7 +82,7 @@ function todosquizzes(quizzes) {
   });
   renderizarTodosQuizzes();
 }
-
+D;
 function erro(error) {
   console.log(error);
 }
@@ -114,11 +117,12 @@ function renderizarTodosQuizzes() {
   }
 }
 
-//renderiza um quizz específico da api
+//--------renderiza um quizz específico da api
 function getOneQuizz(id) {
   toggleTela1();
   toggleTela2();
   const promise = axios.get(`${urlApi}quizzes/${id}`);
+  // const promise = axios.get(`${urlApi}quizzes/158`); //pra ir só pro quizz do lele pra testar
   promise.catch(erro);
   promise.then(umquizz);
 }
@@ -711,7 +715,9 @@ function removeMinimized(element) {
   element.classList.remove("minimized");
 }
 
-// Adiciona a classe .hide em todos os filhos de body exceto no header.
+/**
+ * Adiciona a classe .hide em todos os filhos de body exceto no header.
+ */
 function toggleHideAllBody() {
   const body = document.querySelector("body");
   const bodyChildren = body.children;
