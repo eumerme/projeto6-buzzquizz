@@ -16,6 +16,7 @@ let totalUsuario = 0;
 let total = 0;
 let boxResultado, resultadoTitulo, resultadoImagem, resultadoTexto;
 let tela2, estadoInicialQuizz;
+let alternativas = "";
 
 function toggleTela1() {
   const containerTela1 = document.querySelector(".container-tela1");
@@ -48,7 +49,7 @@ function makeQuizz() {
   toggleTela31();
 }
 
-//--------renderiza todos os quizzes da api
+//renderiza todos os quizzes da api
 verificaQuizzUsuario();
 buscarTodosQuizzes();
 
@@ -82,7 +83,7 @@ function todosquizzes(quizzes) {
   });
   renderizarTodosQuizzes();
 }
-D;
+
 function erro(error) {
   console.log(error);
 }
@@ -117,12 +118,11 @@ function renderizarTodosQuizzes() {
   }
 }
 
-//--------renderiza um quizz específico da api
+//renderiza um quizz específico da api
 function getOneQuizz(id) {
   toggleTela1();
   toggleTela2();
   const promise = axios.get(`${urlApi}quizzes/${id}`);
-  // const promise = axios.get(`${urlApi}quizzes/158`); //pra ir só pro quizz do lele pra testar
   promise.catch(erro);
   promise.then(umquizz);
 }
@@ -142,7 +142,6 @@ function renderizarBanner() {
   banner.innerHTML = bannerTamplate;
 }
 
-let alternativas = "";
 function renderizarQuizzSelecionado() {
   renderizarBanner();
 
