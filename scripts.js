@@ -79,7 +79,6 @@ function renderizarQuizzCriado() {
   const boxQuizzUsuario = document.querySelector(".box-seus-quizzes");
   const userQuizzes = localStorage.getItem(`userQuizzes`);
   const listaQuizzUsuario = JSON.parse(userQuizzes);
-  console.log(listaQuizzUsuario);
 
   for (let i = 0; i < listaQuizzUsuario.length; i++) {
       const quizzUsuarioTamplate = `
@@ -111,7 +110,6 @@ function getOneQuizz(id) {
   toggleTela1();
   toggleTela2();
   const promise = axios.get(`${urlApi}quizzes/${id}`);
-  // const promise = axios.get(`${urlApi}quizzes/158`); //pra ir só pro quizz do lele pra testar
   promise.catch(erro);
   promise.then(umquizz);
 }
