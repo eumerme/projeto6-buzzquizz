@@ -143,7 +143,7 @@ function renderizarQuizzSelecionado() {
     gerarAlternativas(perguntasApi[i].answers, i);
 
     const boxPerguntaREsposta = `
-        <div class="box-pergunta-resposta">
+        <div id="scroll${i}" class="box-pergunta-resposta">
             <div id="${i}" class="box-pergunta">
                 ${perguntasApi[i].title}
             </div>
@@ -237,7 +237,7 @@ function scrollNextQuestion() {
 
   if (alternativaClicada === true) {
     document
-      .getElementById(`id${total}`)
+      .getElementById(`scroll${total}`)
       .scrollIntoView({ block: "center", behavior: "smooth" });
   }
 }
@@ -488,7 +488,7 @@ function questionsCreationFormsHandler() {
 
       tempQuestions[tempQuestions.length - 1].answers.push({
         text: wrongAnswer2,
-        image: wrong3ImageURL,
+        image: wrong2ImageURL,
         isCorrectAnswer: false,
       });
     }
