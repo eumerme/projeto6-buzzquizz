@@ -227,6 +227,7 @@ body {
   padding: 5px;  
   word-wrap: break-word; 
   text-align: center;
+  box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.25);
 }
 
 .nivel-acerto {
@@ -383,7 +384,6 @@ h1 {
   align-items: flex-start;
   padding: 27px;
   cursor: pointer;
-  /*  margin: 12px auto 12px auto; */
 }
 
 .minimized .inputBoxContainer {
@@ -480,6 +480,7 @@ img {
   }
 
   .resposta {
+    width: auto;
     max-width: 50%;
     min-width: 50%;
     padding: 9px;
