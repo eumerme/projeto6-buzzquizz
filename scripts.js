@@ -67,10 +67,16 @@ function buscarTodosQuizzes() {
 }
 
 function todosquizzes(quizzes) {
-  todosQuizzes = quizzes.data;
+  const userQuizzes = JSON.parse(localStorage.getItem("userQuizzes"));
+
+  todosQuizzes = quizzes.data.filter((x) => {
+    if (userQuizzes.find((y) => y.id === x.id) === undefined) {
+      return x;
+    }
+  });
   renderizarTodosQuizzes();
 }
-
+D
 function erro(error) {
   console.log(error);
 }
@@ -81,7 +87,7 @@ function renderizarQuizzCriado() {
   const listaQuizzUsuario = JSON.parse(userQuizzes);
 
   for (let i = 0; i < listaQuizzUsuario.length; i++) {
-      const quizzUsuarioTamplate = `
+    const quizzUsuarioTamplate = `
       <li class="quizz-usuario" onclick="getOneQuizz(${listaQuizzUsuario[i].id})">
           <div class="titulo-quizz">${listaQuizzUsuario[i].title}</div>
           <img class="img-bckgnd" src="${listaQuizzUsuario[i].image}" alt="">
@@ -199,7 +205,6 @@ function alternativaSelecionada(alternativaEscolhida) {
           .classList.add("resposta-errada");
 
         let respostaCorreta = perguntasApi[i].answers[j].isCorrectAnswer;
-        console.log(respostaCorreta);
 
         if (respostaCorreta === true) {
           const certa = document.getElementById(`${i}${j}`);
@@ -290,7 +295,8 @@ function reiniciarQuizz() {
   resultadoTexto = ``;
   setTimeout(() => {
     document.querySelector(".box-resultado").classList.add("hide");
-    toggleBotoesQuizz()}, 300);
+    toggleBotoesQuizz();
+  }, 300);
 }
 
 //cuida das respostas inseridas no formulário de informações básicas do quizz
