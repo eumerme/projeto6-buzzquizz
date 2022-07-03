@@ -118,8 +118,7 @@ body {
     rgba(0, 0, 0, 0.5) 64.58%,
     #000000 100%
   );
-  background-size: cover;
-  margin: 15px 7px;
+  margin: 15px 7px; 
   position: relative;
 }
 
@@ -130,6 +129,7 @@ body {
   position: absolute;
   top: 0;
   z-index: -1;
+  object-fit: cover;
 }
 
 .titulo-quizz {
@@ -175,6 +175,7 @@ body {
   position: absolute;
   top: 0;
   z-index: -1;
+  object-fit: cover;
 }
 
 .opaco {
@@ -221,7 +222,9 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #434ca0;
-  padding: 5px;
+  padding: 5px;  
+  word-wrap: break-word; 
+  text-align: center;
 }
 
 .nivel-acerto {
@@ -540,6 +543,7 @@ h1 {
   .quizz-usuario,
   .img-bckgnd {
     width: 100%;
+    object-fit: cover;
   }
 
   .info-seus-quizzes {
