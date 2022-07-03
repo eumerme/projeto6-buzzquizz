@@ -58,14 +58,14 @@ function makeQuizz() {
 }
 
 //--------renderiza todos os quizzes da api
-verificaQuizzUsuario ();
+verificaQuizzUsuario();
 buscarTodosQuizzes();
 
-function verificaQuizzUsuario () {
+function verificaQuizzUsuario() {
   if (localStorage.length !== 0) {
     document.querySelector(".box-criar-quizz").classList.add("hide");
     document.querySelector(".seus-quizzes").classList.remove("hide");
-    renderizarQuizzCriado ();
+    renderizarQuizzCriado();
   }
 }
 
@@ -77,7 +77,7 @@ function buscarTodosQuizzes() {
 
 function todosquizzes(quizzes) {
   todosQuizzes = quizzes.data;
- // todosQuizzes = todosQuizzes.sort(shuffle);
+  // todosQuizzes = todosQuizzes.sort(shuffle);
   renderizarTodosQuizzes();
 }
 
@@ -85,18 +85,18 @@ function erro(error) {
   console.log(error);
 }
 
-function renderizarQuizzCriado () {
+function renderizarQuizzCriado() {
   const boxQuizzUsuario = document.querySelector(".box-seus-quizzes");
   const userQuizzes = localStorage.getItem(`userQuizzes`);
   const listaQuizzUsuario = JSON.parse(userQuizzes);
 
   for (let i = 0; i < localStorage.length; i++) {
-      const quizzUsuarioTamplate = `
+    const quizzUsuarioTamplate = `
       <li class="quizz-usuario" onclick="getOneQuizz(${listaQuizzUsuario[i].id})">
           <div class="titulo-quizz">${listaQuizzUsuario[i].title}</div>
           <img class="img-bckgnd" src="${listaQuizzUsuario[i].image}" alt="">
       </li>
-    `
+    `;
     boxQuizzUsuario.innerHTML += quizzUsuarioTamplate;
   }
 }
@@ -146,7 +146,7 @@ function renderizarQuizzSelecionado() {
 
   tela2 = document.querySelector(".conteudo-tela2");
   perguntasApi = quizzAPI.questions;
- // perguntasApi = perguntasApi.sort(shuffle);
+  // perguntasApi = perguntasApi.sort(shuffle);
 
   for (let i = 0; i < perguntasApi.length; i++) {
     gerarAlternativas(perguntasApi[i].answers, i);
@@ -617,7 +617,10 @@ function levelsCreationFormsHandler() {
     });
   }
 
-  if (levelsTemp.find((x) => x.minValue === 0) === undefined) {
+  if (
+    levelsTemp.filter((x) => x.minValue === 0) === undefined ||
+    levelsTemp.filter((x) => x.minValue === 0).length > 1
+  ) {
     alert("Por favor, preencha os dados corretamente.");
     return;
   }
