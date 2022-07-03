@@ -67,10 +67,16 @@ function buscarTodosQuizzes() {
 }
 
 function todosquizzes(quizzes) {
-  todosQuizzes = quizzes.data
+  const userQuizzes = JSON.parse(localStorage.getItem("userQuizzes"));
+  if (userQuizzes === null) {return};
+
+  todosQuizzes = quizzes.data.filter((x) => {
+    if (userQuizzes.find((y) => y.id === x.id) === undefined) {
+      return x;
+    }
+  });
   renderizarTodosQuizzes();
 }
-
 
 function erro(error) {
   console.log(error);
@@ -94,20 +100,15 @@ function renderizarQuizzCriado() {
 
 function renderizarTodosQuizzes() {
   const quizzServer = document.querySelector(".box-todos-os-quizzes");
-  const userQuizzes = JSON.parse(localStorage.getItem("userQuizzes"));
 
   for (let i = 0; i < 12; i++) {
-    const achaQuizzUsuario = userQuizzes.find(userQuizz => userQuizz.id === todosQuizzes[i].id);
-    
-    if (achaQuizzUsuario === undefined) {
-      const quizzTamplate = `
+    const quizzTamplate = `
             <li class="quizz-server" onclick="getOneQuizz(${todosQuizzes[i].id})">
                 <div class="titulo-quizz">${todosQuizzes[i].title}</div>
                 <img class="img-bckgnd" src="${todosQuizzes[i].image}" alt="">
             </li>
         `;
-      quizzServer.innerHTML += quizzTamplate;
-    }     
+    quizzServer.innerHTML += quizzTamplate;
   }
 }
 
