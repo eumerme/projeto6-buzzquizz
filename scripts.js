@@ -68,7 +68,9 @@ function buscarTodosQuizzes() {
 
 function todosquizzes(quizzes) {
   const userQuizzes = JSON.parse(localStorage.getItem("userQuizzes"));
-  if (userQuizzes === null) {return};
+  if (userQuizzes === null) {
+    renderizarTodosQuizzes();
+  };
 
   todosQuizzes = quizzes.data.filter((x) => {
     if (userQuizzes.find((y) => y.id === x.id) === undefined) {
