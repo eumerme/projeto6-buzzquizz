@@ -147,7 +147,7 @@ function renderizarQuizzSelecionado() {
 
   tela2 = document.querySelector(".conteudo-tela2");
   perguntasApi = quizzAPI.questions;
-  // perguntasApi = perguntasApi.sort(shuffle);
+  perguntasApi = perguntasApi.sort(shuffle);
 
   for (let i = 0; i < perguntasApi.length; i++) {
     gerarAlternativas(perguntasApi[i].answers, i);
@@ -656,42 +656,7 @@ function renderQuizzPage(response) {
   quizzCreationForm.classList.add("hide");
   document.querySelector(".container-tela2").classList.remove("hide");
 
-  const banner = document.querySelector(".banner");
-  const bannerTamplate = `
-        <h1 class="titulo-banner">${quizzAPI.title}</h1>
-        <img class="img-banner" src="${quizzAPI.image}" alt="">
-        <div class="opaco"></div>
-    `;
-  banner.innerHTML = bannerTamplate;
-
-  tela2 = document.querySelector(".conteudo-tela2");
-  perguntasApi = quizzAPI.questions;
-  perguntasApi = perguntasApi.sort(shuffle);
-
-  for (let i = 0; i < perguntasApi.length; i++) {
-    gerarAlternativas(perguntasApi[i].answers, i);
-
-    const boxPerguntaREsposta = `
-        <div class="box-pergunta-resposta">
-            <div id="${i}" class="box-pergunta">
-                ${perguntasApi[i].title}
-            </div>
-            
-            <div id="id${i}" class="box-resposta todas-alternativas${[i]}">
-                ${alternativas}
-            </div> 
-            </div>         
-        </div>
-        `;
-    alternativas = "";
-    tela2.innerHTML += boxPerguntaREsposta;
-
-    document.getElementById([
-      i,
-    ]).style.backgroundColor = `${perguntasApi[i].color}`;
-  }
-
-  estadoInicialQuizz = tela2.innerHTML;
+  renderizarQuizzSelecionado();
 }
 
 function renderSuccessfulPage(quizz) {

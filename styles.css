@@ -303,6 +303,7 @@ body {
 .button-criar-quizz,
 .quizz-server,
 .quizz-usuario,
+.resposta,
 .ionicon-criar-quizz:hover {
   cursor: pointer;
 }
